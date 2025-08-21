@@ -1,36 +1,36 @@
 
 export type TaskAttribute = {
-    id: number
-    title: string
+  id: number
+  title: string
 }
 
 export default class Task {
-    _attributes: TaskAttribute
+  _attributes: TaskAttribute
 
-    constructor(
-        attributes: TaskAttribute = { id: Date.now(), title: '' }
-    ) {
-        this._attributes = attributes
-    }
+  constructor(
+    attributes: TaskAttribute = { id: Date.now(), title: '' }
+  ) {
+    this._attributes = attributes
+  }
 
-    get id() {
-        return this._attributes.id
-    }
+  get id() {
+    return this._attributes.id
+  }
 
-    set id(v) {
-        this._attributes.id = v
-    }
+  set id(v) {
+    this._attributes.id = v
+  }
 
-    get title() {
-        return this._attributes.title
-    }
+  get title() {
+    return this._attributes.title
+  }
 
-    set title(v) {
-        this._attributes.title = v
-    }
+  set title(v) {
+    this._attributes.title = v
+  }
 
-    toJSON() {
-        return this._attributes
-    }
+  toJSON() {
+    return this._attributes
+  }
 }
 
