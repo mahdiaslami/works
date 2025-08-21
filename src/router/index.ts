@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SubjectPage from '@/pages/SubjectPage.vue'
+import TaskPage from '@/pages/TaskPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       name: 'Home',
       path: '/',
-      component: SubjectPage
+      component: TaskPage
     }
   ],
 })
