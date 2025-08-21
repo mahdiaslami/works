@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, inject } from 'vue';
-import Sortable from 'sortablejs';
+import Sortable, { type SortableEvent } from 'sortablejs';
 
 const columnRef = ref(null);
 let sortableInstance: Sortable | null = null;
+
 const boardName = inject('kanban-board-name')
+const handleEnd = inject('kanban-board-on-end') as ((ev: SortableEvent) => undefined)
 
 onMounted(() => {
   if (columnRef.value) {
@@ -13,7 +15,7 @@ onMounted(() => {
       animation: 150,
       ghostClass: 'sortable-ghost',
       dragClass: 'sortable-drag',
-      // No onEnd or onUpdate needed for basic reordering within the same column
+      onEnd: handleEnd
     });
   }
 });

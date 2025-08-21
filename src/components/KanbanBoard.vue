@@ -1,12 +1,19 @@
 <script setup lang="ts">
+import type { SortableEvent } from 'sortablejs';
 import { provide } from 'vue';
 
 const props = defineProps<{
   name: string
 }>()
 
-provide('kanban-board-name', props.name)
+const emit = defineEmits<{
+  end: [SortableEvent]
+}>()
 
+provide('kanban-board-name', props.name)
+provide('kanban-board-on-end', (ev: SortableEvent) =>{
+  emit('end', ev)
+})
 </script>
 
 <template>
