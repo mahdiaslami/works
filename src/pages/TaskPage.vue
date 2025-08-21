@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import KanbanColumn from '../components/KanbanColumn.vue';
-import KanbanCard from '../components/KanbanCard.vue';
+import KanbanColumn from '@/components/KanbanColumn.vue';
+import KanbanCard from '@/components/KanbanCard.vue';
 import KanbanBoard from '@/components/KanbanBoard.vue';
 </script>
 

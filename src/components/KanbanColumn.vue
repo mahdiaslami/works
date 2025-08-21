@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Sortable from 'sortablejs';
 
 const columnRef = ref(null);
-let sortableInstance = null;
+let sortableInstance: Sortable | null = null;
 
 onMounted(() => {
   if (columnRef.value) {
