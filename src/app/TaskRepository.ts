@@ -14,7 +14,7 @@ export default class TaskRepository {
   }
 }
 
-const localStorageKey = '/v1/subjects'
+const localStorageKey = '/v1/tasks'
 
 function getFromLocalStorage(): any[] {
   const str = localStorage.getItem(localStorageKey) ?? '[]'
