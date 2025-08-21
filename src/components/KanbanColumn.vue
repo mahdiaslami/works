@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, inject } from 'vue';
 import Sortable from 'sortablejs';
 
 const columnRef = ref(null);
 let sortableInstance: Sortable | null = null;
+const boardName = inject('kanban-board-name')
 
 onMounted(() => {
   if (columnRef.value) {
     sortableInstance = new Sortable(columnRef.value, {
-      group: 'kanbanGroup', // Group name for cross-column dragging if needed later
+      group: `kanban-group:${boardName}`,
       animation: 150,
       ghostClass: 'sortable-ghost',
       dragClass: 'sortable-drag',
@@ -33,7 +34,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .kanban-column {
-  @apply p-4 hover:bg-gray-50 rounded-lg min-w-[250px]
+  @apply p-4 bg-gray-100 rounded-lg min-w-[250px]
 }
 
 .sortable-ghost {
