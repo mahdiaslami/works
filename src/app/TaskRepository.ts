@@ -8,7 +8,9 @@ export default class TaskRepository {
     }
 
     save(t: Task) {
-
+        const list = getFromLocalStorage()
+        list.push(t)
+        saveInLocalStorage(list)
     }
 }
 
