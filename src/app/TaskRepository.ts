@@ -1,13 +1,13 @@
-import Subject, { type SubjectAttribute } from "./Subject";
+import Task, { type TaskAttribute } from "./Task";
 
-export default class SubjectRepository {
-    getAll(): Subject[] {
+export default class TaskRepository {
+    all(): Task[] {
         const list = getFromLocalStorage()
 
-        return list.map((a: SubjectAttribute) => new Subject(a))
+        return list.map((a: TaskAttribute) => new Task(a))
     }
 
-    save(s: Subject) {
+    save(t: Task) {
 
     }
 }

@@ -1,14 +1,14 @@
 
-export type SubjectAttribute = {
+export type TaskAttribute = {
     id: number
     title: string
 }
 
-export default class Subject {
-    _attributes: SubjectAttribute
+export default class Task {
+    _attributes: TaskAttribute
 
     constructor(
-        attributes: SubjectAttribute = { id: Date.now(), title: '' }
+        attributes: TaskAttribute = { id: Date.now(), title: '' }
     ) {
         this._attributes = attributes
     }
