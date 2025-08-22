@@ -7,13 +7,11 @@ import TableHead from '@/components/ui/table/TableHead.vue';
 import TableRow from '@/components/ui/table/TableRow.vue';
 import TableCell from '@/components/ui/table/TableCell.vue';
 
-// Mock data for labels
 const labels = ref([
   {
     id: 1,
     type: 'Category',
     name: 'Priority',
-    value: 'High',
     valueType: 'String',
     valueItems: [],
   },
@@ -21,7 +19,6 @@ const labels = ref([
     id: 2,
     type: 'Tag',
     name: 'Status',
-    value: 'In Progress',
     valueType: 'String',
     valueItems: [],
   },
@@ -29,7 +26,6 @@ const labels = ref([
     id: 3,
     type: 'Category',
     name: 'Urgency',
-    value: 'Medium',
     valueType: 'String',
     valueItems: [],
   },
@@ -37,7 +33,6 @@ const labels = ref([
     id: 4,
     type: 'Tag',
     name: 'Assignee',
-    value: 'John Doe',
     valueType: 'String',
     valueItems: [],
   },
@@ -45,7 +40,6 @@ const labels = ref([
     id: 5,
     type: 'Category',
     name: 'Complexity',
-    value: 'Low',
     valueType: 'String',
     valueItems: [],
   },
@@ -60,7 +54,6 @@ const labels = ref([
           <TableHead>ID</TableHead>
           <TableHead>Type</TableHead>
           <TableHead>Name</TableHead>
-          <TableHead>Value</TableHead>
           <TableHead>Value Type</TableHead>
           <TableHead>Value Items</TableHead>
         </TableRow>
@@ -72,7 +65,6 @@ const labels = ref([
           <TableCell>{{ label.id }}</TableCell>
           <TableCell>{{ label.type }}</TableCell>
           <TableCell>{{ label.name }}</TableCell>
-          <TableCell>{{ label.value }}</TableCell>
           <TableCell>{{ label.valueType }}</TableCell>
           <TableCell>{{ label.valueItems.join(', ') }}</TableCell>
         </TableRow>
