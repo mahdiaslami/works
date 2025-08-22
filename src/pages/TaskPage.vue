@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import KanbanColumn from '@/components/KanbanColumn.vue';
-import KanbanCard from '@/components/KanbanCard.vue';
-import KanbanBoard from '@/components/KanbanBoard.vue';
+import KanbanColumn from '@/components/block/KanbanColumn.vue';
+import KanbanCard from '@/components/block/KanbanCard.vue';
+import KanbanBoard from '@/components/block/KanbanBoard.vue';
 </script>
 
 <template>
