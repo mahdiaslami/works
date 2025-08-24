@@ -17,11 +17,14 @@ const emit = defineEmits<{
 }>();
 
 const isOpen = ref(false);
-const selectedValue= ref<string | null>(null)
+const selectedText= ref<string | null>(null)
+const model = defineModel<string | null>()
 
 provide('select-on-select', (ev: Event) => {
   emit('select', ev)
-  selectedValue.value = (ev.target as HTMLElement).textContent
+  const target = (ev.target as HTMLElement)
+  selectedText.value = target.textContent
+  model.value = target.getAttribute('value')
   isOpen.value = false
 });
 
@@ -29,7 +32,7 @@ useDocumentEventListener('click', () => isOpen.value = false)
 </script>
 
 <template>
-  <div class="relative inline-block text-left">
+  <div class="relative inline-block text-left min-w-56">
     <button
       type="button"
       class="inline-flex justify-between items-center w-full rounded-md border 
@@ -38,7 +41,7 @@ useDocumentEventListener('click', () => isOpen.value = false)
       focus:border-gray-900"
       @click.stop="isOpen = !isOpen"
     >
-      <span>{{ selectedValue || placeholder }}</span>
+      <span>{{ selectedText || placeholder }}</span>
       <IconChevronDown class="ml-2 size-4" />
     </button>
 
