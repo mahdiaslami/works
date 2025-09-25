@@ -1,10 +1,10 @@
-import Task, { type TaskAttribute } from "./Task";
+import Task, { type TaskAttributes } from "./Task";
 
 export default class TaskRepository {
   all(): Task[] {
     const list = getFromLocalStorage()
 
-    return list.map((a: TaskAttribute) => new Task(a))
+    return list.map((a: TaskAttributes) => new Task(a))
   }
 
   save(t: Task) {
