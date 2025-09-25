@@ -1,8 +1,11 @@
+export const LabelValueTypes = ["none", "number", "string", "enum"] as const;
+export const LabelTypes = ["system", "user"] as const
+
 export type LabelAttributes = {
   id: number;
-  type: "system" | "user";
+  type: typeof LabelTypes[number];
   name: string;
-  valueType: "none" | "number" | "string" | "enum";
+  valueType: typeof LabelValueTypes[number];
   valueItems: string[];
 };
 
