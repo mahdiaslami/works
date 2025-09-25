@@ -1,4 +1,4 @@
-export type LabelAttribute = {
+export type LabelAttributes = {
   id: number;
   type: "system" | "user";
   name: string;
@@ -7,10 +7,10 @@ export type LabelAttribute = {
 };
 
 export default class Label {
-  _attributes: LabelAttribute;
+  _attributes: LabelAttributes;
 
   constructor(
-    attributes: LabelAttribute = {
+    attributes: LabelAttributes = {
       id: Date.now(),
       type: "user",
       name: "",

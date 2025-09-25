@@ -1,9 +1,9 @@
-import Label, { type LabelAttribute } from "./Label";
+import Label, { type LabelAttributes } from "./Label";
 
 export default class LabelRepository {
   all(): Label[] {
     const list = getFromLocalStorage();
-    return list.map((a: LabelAttribute) => new Label(a));
+    return list.map((a: LabelAttributes) => new Label(a));
   }
 
   save(label: Label) {
