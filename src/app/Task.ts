@@ -1,14 +1,14 @@
 
-export type TaskAttribute = {
+export type TaskAttributes = {
   id: number
   title: string
 }
 
 export default class Task {
-  _attributes: TaskAttribute
+  _attributes: TaskAttributes
 
   constructor(
-    attributes: TaskAttribute = { id: Date.now(), title: '' }
+    attributes: TaskAttributes = { id: Date.now(), title: '' }
   ) {
     this._attributes = attributes
   }
