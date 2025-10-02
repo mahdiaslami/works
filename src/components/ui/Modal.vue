@@ -37,34 +37,36 @@ const handleCloseClick = () => {
 </script>
 
 <template>
-  <Transition name="modal-fade">
-    <div
-      v-if="modelValue"
-      class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto"
-      aria-labelledby="modal-title"
-      role="dialog"
-      aria-modal="true"
-    >
-      <ModalOverlay
-        :required="required"
-        @close="handleOverlayClick"
-      />
-
+  <Teleport to="body">
+    <Transition name="modal-fade">
       <div
-        class="relative bg-white rounded-lg shadow-xl p-6 max-w-lg w-full mx-auto mt-10"
-        role="document"
+        v-if="modelValue"
+        class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
       >
-        <ModalHeader
-          :title="title"
+        <ModalOverlay
           :required="required"
-          @close="handleCloseClick"
+          @close="handleOverlayClick"
         />
-        <ModalContent>
-          <slot></slot>
-        </ModalContent>
+
+        <div
+          class="relative bg-white rounded-lg shadow-xl p-6 max-w-lg w-full mx-auto mt-10"
+          role="document"
+        >
+          <ModalHeader
+            :title="title"
+            :required="required"
+            @close="handleCloseClick"
+          />
+          <ModalContent>
+            <slot></slot>
+          </ModalContent>
+        </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped>
