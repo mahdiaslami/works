@@ -35,6 +35,8 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+ @reference "../../assets/index.css";
+
 .kanban-column {
   @apply p-4 bg-gray-100 rounded-lg min-w-[250px]
 }

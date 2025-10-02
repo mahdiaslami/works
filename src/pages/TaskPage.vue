@@ -6,7 +6,7 @@ import KanbanBoard from '@/components/block/KanbanBoard.vue';
 
 <template>
   <KanbanBoard name="development"
-    class="max-w-screen-xl mx-auto"
+    class="max-w-(--breakpoint-xl) mx-auto"
     @end="(ev) => console.log(ev)">
     <KanbanColumn>
       <KanbanCard>Task 1: Design UI</KanbanCard>
