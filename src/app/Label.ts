@@ -2,8 +2,7 @@ export type LabelAttribute = {
   id: number;
   type: "system" | "user";
   name: string;
-  value: string | number;
-  valueType: "number" | "string" | "enum";
+  valueType: "none" | "number" | "string" | "enum";
   valueItems: string[];
 };
 
@@ -15,7 +14,6 @@ export default class Label {
       id: Date.now(),
       type: "user",
       name: "",
-      value: "",
       valueType: "string",
       valueItems: [],
     }
@@ -45,14 +43,6 @@ export default class Label {
 
   set name(v) {
     this._attributes.name = v;
-  }
-
-  get value() {
-    return this._attributes.value;
-  }
-
-  set value(v) {
-    this._attributes.value = v;
   }
 
   get valueType() {
