@@ -61,7 +61,7 @@ const data = {
       items: [
         {
           title: "Stories",
-          url: "#",
+          url: "/stories",
         }
       ],
     },

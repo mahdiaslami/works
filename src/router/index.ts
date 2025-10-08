@@ -6,7 +6,14 @@ const router = createRouter({
     {
       name: 'Home',
       path: '/',
-      component: () => import('../pages/dashboard/Index.vue')
+      component: () => import('../pages/dashboard/Index.vue'),
+      children: [
+        {
+          name: 'Stories',
+          path: 'stories',
+          component: () => import('../pages/dashboard/StoryPage.vue')
+        }
+      ]
     }
   ],
 })
