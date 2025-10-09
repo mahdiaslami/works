@@ -7,7 +7,7 @@ type FactoryAttributes = {
 const creators: Record<string, () => any> = {}
 
 
-export default class Factory {
+export default class Factory<T> {
   _attributes: FactoryAttributes
 
   constructor(attributes: FactoryAttributes) {
@@ -15,10 +15,10 @@ export default class Factory {
   }
 
   count(value: number) {
-    return new Factory({ ...this._attributes, count: value })
+    return new Factory<T>({ ...this._attributes, count: value })
   }
 
-  create() {
+  create(): T | T[] | null {
     const count = this._attributes.count
 
     if (count === 0) {
