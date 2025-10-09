@@ -12,7 +12,7 @@ const stories = storyService.all();
   <DashboardHeader>
     <StoriesPageBreadcrumb />
   </DashboardHeader>
-  <div class="p-4 pt-0">
+  <div class="rounded-md border mx-4 mb-4 pb-4">
     <StoryTable :list="stories" />
   </div>
 </template>

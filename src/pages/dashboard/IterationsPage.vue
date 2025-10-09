@@ -11,7 +11,7 @@ const iterations = iterationService.all()
   <DashboardHeader>
     <IterationsPageBreadcrumb />
   </DashboardHeader>
-  <div class="p-4 pt-0">
+  <div class="rounded-md border mx-4 mb-4 pb-4">
     <IterationTable :list="iterations" />
   </div>
 </template>
