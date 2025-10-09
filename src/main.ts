@@ -1,6 +1,6 @@
 import "@/assets/index.css"
 
-import '@/support/factories'
+import '@/app/support/factories'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
