@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import DashboardHeader from '@/components/DashboardHeader.vue';
-import IterationPageBreadcrumb from '@/components/IterationPageBreadcrumb.vue';
+import IterationsPageBreadcrumb from '@/components/IterationsPageBreadcrumb.vue';
 
 </script>
 
 <template>
   <DashboardHeader>
-    <IterationPageBreadcrumb />
+    <IterationsPageBreadcrumb />
   </DashboardHeader>
   <div class="p-4 pt-0">
   </div>
