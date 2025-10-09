@@ -60,6 +60,10 @@ const data = {
       isActive: true,
       items: [
         {
+          title: "Iterations",
+          url: "/iterations",
+        },
+        {
           title: "Stories",
           url: "/stories",
         }
