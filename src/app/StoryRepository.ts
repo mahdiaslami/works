@@ -1,20 +1,20 @@
-import Task, { type TaskAttributes } from "./Task";
+import Story, { type StoryAttributes } from "./Story";
 
-export default class TaskRepository {
-  all(): Task[] {
+export default class StoryRepository {
+  all(): Story[] {
     const list = getFromLocalStorage()
 
-    return list.map((a: TaskAttributes) => new Task(a))
+    return list.map((a: StoryAttributes) => new Story(a))
   }
 
-  save(t: Task) {
+  save(t: Story) {
     const list = getFromLocalStorage()
     list.push(t)
     saveInLocalStorage(list)
   }
 }
 
-const localStorageKey = '/v1/tasks'
+const localStorageKey = '/v1/stories'
 
 function getFromLocalStorage(): any[] {
   const str = localStorage.getItem(localStorageKey) ?? '[]'

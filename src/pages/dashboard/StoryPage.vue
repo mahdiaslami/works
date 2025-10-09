@@ -2,7 +2,7 @@
 import StoryTable from '@/components/StoryTable.vue';
 import { factory } from '@/support/helper';
 
-const stories = factory('task', 100).create()
+const stories = factory('story', 100).create()
 
 </script>
 

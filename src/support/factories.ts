@@ -2,7 +2,7 @@ import Label from "@/app/Label";
 import Factory from "./Factory";
 import { randomBetween } from "./helper";
 import { faker } from "@faker-js/faker";
-import Task from "@/app/Task";
+import Story from "@/app/Story";
 
 Factory.define('label', () => {
   return new Label({
@@ -14,8 +14,8 @@ Factory.define('label', () => {
   })
 })
 
-Factory.define('task', () => {
-  return new Task({
+Factory.define('story', () => {
+  return new Story({
     id: Date.now(),
     title: faker.lorem.sentence(5)
   })

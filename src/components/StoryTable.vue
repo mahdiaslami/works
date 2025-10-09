@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type Task from '@/app/Task';
+import type Story from '@/app/Story';
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/table'
 
 defineProps<{
-  list: Task[]
+  list: Story[]
 }>()
 
 </script>
@@ -27,10 +27,10 @@ defineProps<{
       </TableRow>
     </TableHeader>
     <TableBody>
-      <TableRow v-for="task in list"
-        :key="task.id">
+      <TableRow v-for="story in list"
+        :key="story.id">
         <TableCell>
-          {{ task.title }}
+          {{ story.title }}
         </TableCell>
       </TableRow>
     </TableBody>
