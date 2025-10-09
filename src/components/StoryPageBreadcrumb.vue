@@ -13,13 +13,13 @@ import {
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem class="hidden md:block">
-        <BreadcrumbLink href="#">
-          Building Your Application
+        <BreadcrumbLink href="/">
+          Home
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator class="hidden md:block" />
       <BreadcrumbItem>
-        <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+        <BreadcrumbPage>Stories</BreadcrumbPage>
       </BreadcrumbItem>
     </BreadcrumbList>
   </Breadcrumb>
