@@ -11,7 +11,7 @@ const router = createRouter({
         {
           name: 'Stories',
           path: 'stories',
-          component: () => import('../pages/dashboard/StoryPage.vue')
+          component: () => import('../pages/dashboard/StoriesPage.vue')
         },
         {
           name: 'Iterations',
