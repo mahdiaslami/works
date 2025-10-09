@@ -3,6 +3,7 @@ import { storyService } from '@/app';
 import DashboardHeader from '@/components/DashboardHeader.vue';
 import StoriesPageBreadcrumb from '@/components/StoriesPageBreadcrumb.vue';
 import StoryTable from '@/components/StoryTable.vue';
+import TableContainer from '@/components/TableContainer.vue';
 
 const stories = storyService.all();
 
@@ -12,7 +13,10 @@ const stories = storyService.all();
   <DashboardHeader>
     <StoriesPageBreadcrumb />
   </DashboardHeader>
-  <div class="rounded-md border mx-4 mb-4 pb-4">
-    <StoryTable :list="stories" />
+
+  <div class="px-4 pb-4">
+    <TableContainer>
+      <StoryTable :list="stories" />
+    </TableContainer>
   </div>
 </template>
