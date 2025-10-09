@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { storyService } from '@/app';
 import StoryTable from '@/components/StoryTable.vue';
-import { factory } from '@/support/helper';
 
-const stories = factory('story', 100).create()
+const stories = storyService.all();
 
 </script>
 
