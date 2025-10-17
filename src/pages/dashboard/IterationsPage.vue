@@ -6,7 +6,13 @@ import IterationTable from '@/components/IterationTable.vue';
 import IterationToolbar from '@/components/IterationToolbar.vue';
 import TableContainer from '@/components/TableContainer.vue';
 
-const iterations = iterationService.all()
+import { ref } from 'vue';
+
+const iterations = ref(iterationService.all());
+
+const refreshIterations = () => {
+  iterations.value = iterationService.all();
+};
 </script>
 
 <template>
@@ -15,7 +21,7 @@ const iterations = iterationService.all()
   </DashboardHeader>
 
   <div class="w-full px-4">
-    <IterationToolbar />
+    <IterationToolbar @saved="refreshIterations" />
   </div>
 
   <div class="px-4 pb-4">
