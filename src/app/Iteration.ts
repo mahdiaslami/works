@@ -1,4 +1,5 @@
 import AppDate from "./support/AppDate";
+import PersianDate from "./support/PersianDate";
 
 export type IterationAttributes = {
   id: number
@@ -8,6 +9,12 @@ export type IterationAttributes = {
 
 export default class Iteration {
   _attributes: IterationAttributes;
+
+  get duration(): number {
+    // The distanceInDay method calculates the difference in days.
+    // We add 1 because the duration should include both the start and end day.
+    return this.startDate.distanceInDay(this.endDate._date) + 1;
+  }
 
   constructor(
     attributes: IterationAttributes = {
