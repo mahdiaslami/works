@@ -1,10 +1,12 @@
 
 export default class PersianDate {
-  _date;
+  _date: Date;
 
-  constructor(date: number | string | Date = new Date) {
+  constructor(date: PersianDate | number | string | Date = new Date) {
     if (date instanceof Date) {
       this._date = date
+    } if (date instanceof PersianDate) {
+      this._date = new Date(date._date)
     } else {
       this._date = new Date(date)
     }
