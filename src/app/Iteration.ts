@@ -2,8 +2,8 @@ import AppDate from "./support/AppDate";
 
 export type IterationAttributes = {
   id: number
-  startDate: AppDate
-  endDate: AppDate
+  startDate: string
+  endDate: string
 };
 
 export default class Iteration {
@@ -12,8 +12,8 @@ export default class Iteration {
   constructor(
     attributes: IterationAttributes = {
       id: Date.now(),
-      startDate: new AppDate,
-      endDate: (new AppDate).addDays(14)
+      startDate: AppDate.today().toISOString(),
+      endDate: AppDate.today().addDays(14).toISOString(),
     }
   ) {
     this._attributes = attributes;
@@ -28,19 +28,19 @@ export default class Iteration {
   }
 
   get startDate() {
-    return this._attributes.startDate;
+    return new AppDate(this._attributes.startDate);
   }
 
   set startDate(v) {
-    this._attributes.startDate = v;
+    this._attributes.startDate = (new AppDate(v)).toISOString();
   }
 
   get endDate() {
-    return this._attributes.endDate;
+    return new AppDate(this._attributes.endDate);
   }
 
   set endDate(v) {
-    this._attributes.endDate = v;
+    this._attributes.endDate = (new AppDate(v)).toISOString();
   }
 
   toJSON() {
