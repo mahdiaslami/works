@@ -30,6 +30,9 @@ defineProps<{
         <TableHead>
           End Date
         </TableHead>
+        <TableHead>
+          Duration
+        </TableHead>
       </TableRow>
     </TableHeader>
     <TableBody>
@@ -43,6 +46,9 @@ defineProps<{
         </TableCell>
         <TableCell>
           {{ iteration.endDate.toLocalDateString('en') }}
+        </TableCell>
+        <TableCell>
+          {{ iteration.duration }} days
         </TableCell>
       </TableRow>
     </TableBody>
