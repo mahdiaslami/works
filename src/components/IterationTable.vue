@@ -18,7 +18,7 @@ defineProps<{
 
 <template>
   <Table>
-    <TableCaption>A list of stories.</TableCaption>
+    <TableCaption>A list of iterations.</TableCaption>
     <TableHeader>
       <TableRow>
         <TableHead>
