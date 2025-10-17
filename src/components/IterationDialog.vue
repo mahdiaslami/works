@@ -23,8 +23,8 @@ const emit = defineEmits(['save'])
 const saveIteration = () => {
   const iteration = new Iteration({
     id: Date.now(),
-    startDate: new AppDate(startDate.value),
-    endDate: new AppDate(endDate.value),
+    startDate: startDate.value,
+    endDate: endDate.value,
   });
 
   emit('save', iteration);
