@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ref } from "vue"
 
+const open = ref(false)
 const startDate = ref(AppDate.today().toISODateString())
 const endDate = ref(AppDate.today().addDays(14).toISODateString())
 
@@ -28,12 +29,13 @@ const saveIteration = () => {
   });
 
   emit('save', iteration);
+  open.value = false
 };
 
 </script>
 
 <template>
-  <Dialog>
+  <Dialog v-model:open="open">
     <DialogTrigger as-child>
       <Button variant="outline">
         Create Iteration
