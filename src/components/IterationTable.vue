@@ -39,10 +39,10 @@ defineProps<{
           {{ iteration.id }}
         </TableCell>
         <TableCell>
-          {{ iteration.startDate.toLocalDateString() }}
+          {{ iteration.startDate.toLocalDateString('en') }}
         </TableCell>
         <TableCell>
-          {{ iteration.endDate.toLocalDateString() }}
+          {{ iteration.endDate.toLocalDateString('en') }}
         </TableCell>
       </TableRow>
     </TableBody>
