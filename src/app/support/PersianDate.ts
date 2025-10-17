@@ -87,4 +87,8 @@ export default class PersianDate {
   toISOString(): string {
     return this._date.toISOString()
   }
+
+  toISODateString(): string {
+    return this._date.toISOString().split('T')[0];
+  }
 }
