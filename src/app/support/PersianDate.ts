@@ -77,9 +77,9 @@ export default class PersianDate {
 
   distanceInDay(date: Date | PersianDate): number {
     const cur = this.duplicate()._date.setHours(0, 0, 0, 0)
-    const today = (new PersianDate(date))._date.setHours(0, 0, 0, 0)
+    const theDate = (new PersianDate(date))._date.setHours(0, 0, 0, 0)
 
-    return (today - cur) / 86400000
+    return (theDate - cur) / 86400000
   }
 
   duplicate(): this {
