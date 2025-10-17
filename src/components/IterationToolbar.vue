@@ -4,8 +4,13 @@ import IterationDialog from "./IterationDialog.vue";
 import { iterationService } from "@/app/index";
 import Iteration from "@/app/Iteration";
 
-const handleSaveIteration = (iteration: Iteration) => {
-  iterationService.save(iteration);
+import { defineEmits } from 'vue';
+
+const emit = defineEmits(['saved']);
+
+const handleSaveIteration = async (iteration: Iteration) => {
+  await iterationService.save(iteration);
+  emit('saved');
 };
 </script>
 
