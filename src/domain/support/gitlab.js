@@ -62,6 +62,8 @@ export class GitLab {
     const author = this._mapUser(item?.author);
     const assignee = this._mapUser(item?.assignee ?? (Array.isArray(item?.assignees) ? item.assignees[0] : undefined));
     return {
+      id: item.id,
+      iid: item.iid,
       title: item?.title,
       author,
       assignee,

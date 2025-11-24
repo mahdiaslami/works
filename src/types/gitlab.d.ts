@@ -253,6 +253,8 @@ export interface User {
 }
 
 export interface MergeRequest {
+  id: number,
+  iid: number,
   title: string;
   author: User;
   assignee: User | null;
@@ -260,6 +262,8 @@ export interface MergeRequest {
 }
 
 export interface Issue {
+  id: number,
+  iid: number,
   title: string;
   author: User;
   assignee: User | null;
