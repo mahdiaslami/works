@@ -6,6 +6,9 @@ import axios from 'axios';
  * @typedef {import('../../types/gitlab').MergeRequest} MergeRequest
  * @typedef {import('../../types/gitlab').Todo} Todo
  * @typedef {import('../../types/gitlab').User} User
+ * @typedef {import('../../types/gitlab').IssueQueryParam} IssueQueryParam
+ * @typedef {import('../../types/gitlab').MergeRequestQueryParam} MergeRequestQueryParam
+ * @typedef {import('../../types/gitlab').TodoQueryParam} TodoQueryParam
  */
 
 /**
@@ -68,7 +71,7 @@ export class GitLab {
 
   /**
    * Retrieve issues from GitLab.
-   * @param {Record<string, any>} [params]
+   * @param {IssueQueryParam} [params]
    * @returns {Promise<(Issue)[]>}
    */
   async issues(params = {}) {
@@ -80,7 +83,7 @@ export class GitLab {
 
   /**
    * Retrieve merge requests from GitLab.
-   * @param {Record<string, any>} [params]
+   * @param {MergeRequestQueryParam} [params]
    * @returns {Promise<(MergeRequest)[]>}
    */
   async mergeRequests(params = {}) {
@@ -92,7 +95,7 @@ export class GitLab {
 
   /**
    * Retrieve todos from GitLab and map their targets.
-   * @param {Record<string, any>} [params]
+   * @param {TodoQueryParam} [params]
    * @returns {Promise<Todo[]>}
    */
   async todos(params = {}) {
