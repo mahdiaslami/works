@@ -1,8 +1,9 @@
+import type { WorkRepository as IWorkRepository } from '../contracts/work-repository';
 import { GitLab } from '../support/gitlab.js';
 import { Work } from './work';
 import { WorkCollection } from './work-collection';
 
-export class WorkRepository {
+export class WorkRepository implements IWorkRepository {
   private gitlab: GitLab;
 
   constructor(gitlab: GitLab) {
