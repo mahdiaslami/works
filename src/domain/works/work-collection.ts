@@ -1,6 +1,6 @@
 import { Work } from './work';
 
-export class ToolCollection {
+export class WorkCollection {
   private _items: Work[];
 
   constructor(items?: Work[]) {
@@ -29,5 +29,23 @@ export class ToolCollection {
 
   toArray(): Work[] {
     return [...this._items];
+  }
+
+  /**
+   * Merge this collection with another WorkCollection or an array of Work.
+   * Returns a new WorkCollection instance containing deduplicated works by webUrl.
+   */
+  merge(input: Work[] | WorkCollection): WorkCollection {
+    const others: Work[] = input instanceof WorkCollection ? input.items : input;
+    const combined = [...this._items, ...(others ?? [])];
+
+    const map = new Map<string, Work>();
+    for (const item of combined) {
+      if (!item) continue;
+      const key = item.webUrl;
+      if (!map.has(key)) map.set(key, item);
+    }
+
+    return new WorkCollection(Array.from(map.values()));
   }
 }

@@ -1,5 +1,6 @@
 import { GitLab } from '../support/gitlab.js';
 import { Work } from './work';
+import { WorkCollection } from './work-collection';
 
 export class WorkRepository {
   private gitlab: GitLab;
@@ -9,24 +10,20 @@ export class WorkRepository {
   }
 
   /**
-   * Retrieve issues created by the current user and issues assigned to them.
-   * Results are deduplicated by webUrl.
+   * Retrieve issues created by the current user as a WorkCollection.
    */
-  async get(): Promise<Work[]> {
-    const [created, assigned] = await Promise.all([
-      this.gitlab.issues({ scope: 'created_by_me' }),
-      this.gitlab.issues({ scope: 'assigned_to_me' })
-    ]);
+  async issuesCreatedByMe(): Promise<WorkCollection> {
+    const created = await this.gitlab.issues({ scope: 'created_by_me' });
+    const items = (created || []).filter(Boolean).map(i => new Work(i));
+    return new WorkCollection(items);
+  }
 
-    const combined = [...(created || []), ...(assigned || [])];
-
-    const map = new Map<string, Work>();
-    for (const item of combined) {
-      if (!item) continue;
-      const key = item.webUrl;
-      if (!map.has(key)) map.set(key, new Work(item));
-    }
-
-    return Array.from(map.values());
+  /**
+   * Retrieve issues assigned to the current user as a WorkCollection.
+   */
+  async issuesAssignedToMe(): Promise<WorkCollection> {
+    const assigned = await this.gitlab.issues({ scope: 'assigned_to_me' });
+    const items = (assigned || []).filter(Boolean).map(i => new Work(i));
+    return new WorkCollection(items);
   }
 }
