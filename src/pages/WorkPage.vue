@@ -1,22 +1,9 @@
 <script setup lang="ts">
 import Container from '@/components/layout/BaseContainer.vue';
-import CardList from '@/components/ui/card/CardList.vue';
-import WorkCard from '@/components/WorkCard.vue';
-import type { Work } from '@/domain';
+import WorksTree from '@/components/WorksTree.vue';
 import { useWorkStore } from '@/stores/work';
-import { computed } from 'vue';
 
 const workStore = useWorkStore();
-
-const rootWorks = computed(() => workStore.works?.filter((w) => !w.hasParent()))
-
-function hasChildren(work: Work) {
-  return workStore.works.some((w) => w.isMyParent(work.id))
-}
-
-function getChildren(work: Work) {
-  return workStore.works.filter((w) => w.isMyParent(work.id))
-}
 </script>
 
 <template>
@@ -25,24 +12,6 @@ function getChildren(work: Work) {
       Works
     </h1>
 
-    <CardList>
-      <template v-for="work in rootWorks"
-        :key="work.id">
-
-        <details v-if="hasChildren(work)">
-          <summary class="no-marker">
-            <WorkCard :work="work" />
-          </summary>
-
-          <CardList class="mt-2 ms-4">
-            <WorkCard v-for="childWork in getChildren(work)"
-              :key="childWork.id"
-              :work="childWork" />
-          </CardList>
-        </details>
-
-        <WorkCard v-else :work="work" />
-      </template>
-    </CardList>
+    <WorksTree :works="workStore.works" />
   </Container>
 </template>
