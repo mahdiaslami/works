@@ -1,7 +1,8 @@
 import type { Issue, MergeRequest, User } from '../../types/gitlab';
 
 export class Work implements Issue, MergeRequest {
-  private _target: Issue | MergeRequest;
+  _target: Issue | MergeRequest;
+  _parentIds: number[] = [];
 
   constructor(target: Issue | MergeRequest) {
     this._target = target;
