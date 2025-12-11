@@ -23,6 +23,7 @@ export class WorkRepository implements IWorkRepository {
       title: 'Fake issue created by me (assigned to me)',
       author: me,
       assignee: me,
+      description: '',
       webUrl: 'https://gitlab.example.com/project/1/-/issues/1001'
     };
 
@@ -32,6 +33,7 @@ export class WorkRepository implements IWorkRepository {
       title: 'Fake issue created by me (assigned to someone else)',
       author: me,
       assignee: other,
+      description: '',
       webUrl: 'https://gitlab.example.com/project/1/-/issues/1002'
     };
 
@@ -56,6 +58,7 @@ export class WorkRepository implements IWorkRepository {
       title: 'Fake issue created by me (assigned to me)',
       author: me,
       assignee: me,
+      description: '',
       webUrl: 'https://gitlab.example.com/project/1/-/issues/1001'
     };
 
@@ -65,6 +68,7 @@ export class WorkRepository implements IWorkRepository {
       title: 'Fake issue assigned to me (created by someone else)',
       author: other,
       assignee: me,
+      description: '',
       webUrl: 'https://gitlab.example.com/project/1/-/issues/2002'
     };
 

@@ -31,6 +31,10 @@ export class Work implements Issue, MergeRequest {
     return this._target.webUrl;
   }
 
+  get description(): string {
+    return this._target.description;
+  }
+
   get target(): Issue | MergeRequest {
     return this._target;
   }

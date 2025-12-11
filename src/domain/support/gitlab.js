@@ -67,6 +67,7 @@ export class GitLab {
       title: item?.title,
       author,
       assignee,
+      description: item.description,
       webUrl: item?.web_url ?? item?.webUrl
     };
   }

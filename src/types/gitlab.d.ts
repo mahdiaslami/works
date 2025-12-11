@@ -259,6 +259,7 @@ export interface MergeRequest {
   author: User;
   assignee: User | null;
   webUrl: string;
+  description: string;
 }
 
 export interface Issue {
@@ -268,6 +269,7 @@ export interface Issue {
   author: User;
   assignee: User | null;
   webUrl: string;
+  description: string;
 }
 
 export interface Todo {
