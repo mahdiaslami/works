@@ -39,7 +39,7 @@ export class GitLab {
 
   /**
    * Normalize a raw user object from GitLab to our User type.
-   * @param {any} user
+   * @param {!any} user
    * @returns {User}
    */
   _mapUser(user) {
@@ -55,7 +55,7 @@ export class GitLab {
   /**
    * Normalize an issue or merge request payload to our simple shape.
    * Ensures author is non-null to satisfy typedefs.
-   * @param {any} item
+   * @param {!any} item
    * @returns {Issue | MergeRequest}
    */
   _mapIssueOrMr(item) {
