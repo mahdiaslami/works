@@ -30,7 +30,7 @@ function getChildren(work: Work) {
         :key="work.id">
 
         <details v-if="hasChildren(work)">
-          <summary>
+          <summary class="no-marker">
             <WorkCard :work="work" />
           </summary>
 

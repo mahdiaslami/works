@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide the default disclosure marker for <summary> across browsers */
+.no-marker::-webkit-details-marker {
+  display: none;
+}
+
+.no-marker::marker {
+  display: none;
+}
+
+.no-marker {
+  list-style: none;
+}
