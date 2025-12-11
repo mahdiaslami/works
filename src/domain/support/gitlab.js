@@ -59,8 +59,8 @@ export class GitLab {
    * @returns {Issue | MergeRequest}
    */
   _mapIssueOrMr(item) {
-    const author = this._mapUser(item?.author);
-    const assignee = this._mapUser(item?.assignee ?? (Array.isArray(item?.assignees) ? item.assignees[0] : undefined));
+    const author = this._mapUser(item.author);
+    const assignee = item.assignees.length > 0 ? this._mapUser(item.assignees[0]) : null;
     return {
       id: item.id,
       iid: item.iid,
