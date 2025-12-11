@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import Container from '@/components/layout/BaseContainer.vue';
 import CardList from '@/components/ui/card/CardList.vue';
-import Card from '@/components/ui/card/CardRoot.vue';
-import Tag from '@/components/ui/Tag.vue';
+import WorkCard from '@/components/WorkCard.vue';
+import type { Work } from '@/domain';
 import { useWorkStore } from '@/stores/work';
+import { computed } from 'vue';
 
 const workStore = useWorkStore();
 
+const rootWorks = computed(() => workStore.works?.filter((w) => !w.hasParent()))
+
+function hasChildren(work: Work) {
+  return workStore.works.some((w) => w.isMyParent(work.id))
+}
+
+function getChildren(work: Work) {
+  return workStore.works.filter((w) => w.isMyParent(work.id))
+}
 </script>
 
 <template>
@@ -15,15 +25,24 @@ const workStore = useWorkStore();
       Works
     </h1>
 
-    <CardList class="grid grid-cols-[auto_auto_1fr] gap-x-4">
-      <Card v-for="work in workStore.works"
-        :key="work.id"
-        class="col-span-4 grid grid-cols-subgrid justify-items-start">
-        <h2 class="text-sm">{{ work.title }}</h2>
+    <CardList>
+      <template v-for="work in rootWorks"
+        :key="work.id">
 
-        <Tag>aut: {{ work.author.username }}</Tag>
-        <Tag v-if="work.assignee">ass: {{ work.assignee?.username }}</Tag>
-      </Card>
+        <details v-if="hasChildren(work)">
+          <summary>
+            <WorkCard :work="work" />
+          </summary>
+
+          <CardList class="mt-2 ms-4">
+            <WorkCard v-for="childWork in getChildren(work)"
+              :key="childWork.id"
+              :work="childWork" />
+          </CardList>
+        </details>
+
+        <WorkCard v-else :work="work" />
+      </template>
     </CardList>
   </Container>
 </template>
