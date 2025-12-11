@@ -1,4 +1,5 @@
 import { Work } from './work';
+import { WorkParentResolver } from './work-parent-resolver';
 
 export class WorkCollection {
   private _items: Work[];
@@ -47,5 +48,9 @@ export class WorkCollection {
     }
 
     return new WorkCollection(Array.from(map.values()));
+  }
+
+  resolveParents() {
+    (new WorkParentResolver).resolve(this._items)
   }
 }

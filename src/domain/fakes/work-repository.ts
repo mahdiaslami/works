@@ -23,7 +23,14 @@ export class WorkRepository implements IWorkRepository {
       title: 'Fake issue created by me (assigned to me)',
       author: me,
       assignee: me,
-      description: '',
+      description: `
+[task]
+
+- https://gitlab.example.com/project/1/-/issues/1002
+- https://gitlab.example.com/project/1/-/issues/2002
+
+[/task]
+`,
       webUrl: 'https://gitlab.example.com/project/1/-/issues/1001'
     };
 
@@ -37,7 +44,17 @@ export class WorkRepository implements IWorkRepository {
       webUrl: 'https://gitlab.example.com/project/1/-/issues/1002'
     };
 
-    const items = [new Work(created1), new Work(created2)];
+    const created3 = {
+      id: 102,
+      iid: 1002,
+      title: 'Fake issue created by me (without assignee)',
+      author: me,
+      assignee: null,
+      description: '',
+      webUrl: 'https://gitlab.example.com/project/1/-/issues/1003'
+    };
+
+    const items = [new Work(created1), new Work(created2), new Work(created3)];
     return new WorkCollection(items);
   }
 

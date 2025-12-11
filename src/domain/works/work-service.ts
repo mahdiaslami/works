@@ -1,5 +1,4 @@
 import { WorkRepository } from './work-repository';
-import { WorkCollection } from './work-collection';
 import { Work } from './work';
 
 export class WorkService {
@@ -20,6 +19,7 @@ export class WorkService {
     ]);
 
     const merged = created.merge(assigned);
+    merged.resolveParents()
     return merged.toArray();
   }
 }

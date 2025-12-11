@@ -38,4 +38,18 @@ export class Work implements Issue, MergeRequest {
   get target(): Issue | MergeRequest {
     return this._target;
   }
+
+  addParentId(id: number) {
+    if (!this._parentIds.includes(id)) {
+      this._parentIds.push(id);
+    }
+  }
+
+  isMyParent(id: number): boolean {
+    return this._parentIds.includes(id);
+  }
+
+  hasParent() {
+    return this._parentIds.length > 0
+  }
 }
