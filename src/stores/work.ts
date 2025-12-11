@@ -8,13 +8,5 @@ export const useWorkStore = defineStore('work', () => {
 
   workService.get().then((v) => works.value = v)
 
-  function setWorks(items: Work[]) {
-    works.value = items
-  }
-
-  function addWork(item: Work) {
-    works.value.push(item)
-  }
-
-  return { works, setWorks, addWork }
+  return { works }
 })
