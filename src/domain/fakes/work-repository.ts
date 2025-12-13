@@ -37,6 +37,7 @@ const issues: Issue[] = [
   { ...fakeWork(), author: me },
   { ...fakeWork(), author: me, assignee: me },
   { ...fakeWork(), assignee: me },
+  { ...fakeWork(), author: me },
   { ...fakeWork(), assignee: me },
 ];
 
@@ -48,3 +49,5 @@ issues[0]!.description = `
 
 [/task]
 `
+
+issues[3]!.description = `[parent ${issues[2]!.webUrl}]`
