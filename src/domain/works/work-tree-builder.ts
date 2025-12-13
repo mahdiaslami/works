@@ -6,7 +6,7 @@ export class WorkTreeBuilder {
     works.forEach(w => byUrl.set(w.webUrl, w));
 
     for (const work of works) {
-      const links = this._extractLinks(work.description);
+      const links = this._extractUrlsBetweenTaskTag(work.description);
 
       for (const link of links) {
         const child = byUrl.get(link);
@@ -20,7 +20,7 @@ export class WorkTreeBuilder {
     return works.filter((work) => work.parents.length === 0);
   }
 
-  _extractLinks(description: string): string[] {
+  _extractUrlsBetweenTaskTag(description: string): string[] {
     const blockPattern = /\[task\]([\s\S]*?)\[\/task\]/g;
     const urlPattern = /(https?:\/\/[^\s]+)/g;
 
