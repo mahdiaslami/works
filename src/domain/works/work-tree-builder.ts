@@ -1,7 +1,6 @@
 import type { Work } from "./work";
 
-
-export class WorkParentResolver {
+export class WorkTreeBuilder {
   resolve(works: Work[]): Work[] {
     const byUrl = new Map<string, Work>();
     works.forEach(w => byUrl.set(w.webUrl, w));
@@ -12,12 +11,13 @@ export class WorkParentResolver {
       for (const link of links) {
         const child = byUrl.get(link);
         if (child) {
-          child.addParentId(work.id);
+          work.children.add(child);
+          child.parents.add(work);
         }
       }
     }
 
-    return works;
+    return works.filter((work) => work.parents.length === 0);
   }
 
   _extractLinks(description: string): string[] {

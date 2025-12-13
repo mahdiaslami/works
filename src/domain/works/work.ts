@@ -1,11 +1,15 @@
 import type { Issue, MergeRequest, User } from '../../types/gitlab';
+import { WorkCollection } from './work-collection';
 
 export class Work implements Issue, MergeRequest {
   _target: Issue | MergeRequest;
-  _parentIds: number[] = [];
+  children: WorkCollection;
+  parents: WorkCollection;
 
   constructor(target: Issue | MergeRequest) {
     this._target = target;
+    this.children = new WorkCollection();
+    this.parents = new WorkCollection();
   }
 
   get id(): number {
@@ -38,19 +42,5 @@ export class Work implements Issue, MergeRequest {
 
   get target(): Issue | MergeRequest {
     return this._target;
-  }
-
-  addParentId(id: number) {
-    if (!this._parentIds.includes(id)) {
-      this._parentIds.push(id);
-    }
-  }
-
-  isMyParent(id: number): boolean {
-    return this._parentIds.includes(id);
-  }
-
-  hasParent() {
-    return this._parentIds.length > 0
   }
 }

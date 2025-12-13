@@ -1,8 +1,8 @@
 import { Work } from './work';
-import { WorkParentResolver } from './work-parent-resolver';
+import { WorkTreeBuilder } from './work-tree-builder';
 
 export class WorkCollection {
-  private _items: Work[];
+  _items: Work[];
 
   constructor(items?: Work[]) {
     this._items = items ?? [];
@@ -50,7 +50,7 @@ export class WorkCollection {
     return new WorkCollection(Array.from(map.values()));
   }
 
-  resolveParents() {
-    (new WorkParentResolver).resolve(this._items)
+  buildTree() {
+    return new WorkCollection((new WorkTreeBuilder).resolve(this._items))
   }
 }
