@@ -245,11 +245,11 @@ export interface TodoQueryParam extends BaseQueryParam {
 // -- GitLab Entities
 
 export interface User {
-  id?: number;
-  username?: string;
-  name?: string;
-  avatarUrl?: string;
-  webUrl?: string;
+  id: number;
+  username: string;
+  name: string;
+  avatarUrl: string | null;
+  webUrl: string;
 }
 
 export interface MergeRequest {
