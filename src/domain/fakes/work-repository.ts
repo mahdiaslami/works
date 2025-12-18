@@ -44,8 +44,8 @@ const issues: Issue[] = [
 issues[0]!.description = `
 [task]
 
-- ${issues[1]!.webUrl}
-- ${issues[2]!.webUrl}
+- ${issues[1]!.webUrl}+
+- ${issues[2]!.webUrl}+s
 
 [/task]
 `

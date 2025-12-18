@@ -9,7 +9,7 @@ export class WorkTreeBuilder {
       const childLinks = this._extractUrlsBetweenTaskTag(work.description);
 
       for (const link of childLinks) {
-        const child = byUrl.get(link);
+        const child = byUrl.get(this._normalizeUrl(link));
         if (child) {
           work.children.add(child);
           child.parents.add(work);
@@ -18,7 +18,7 @@ export class WorkTreeBuilder {
 
       const parentLinks = this._extractUrlsFromParentTag(work.description);
       for (const link of parentLinks) {
-        const parent = byUrl.get(link);
+        const parent = byUrl.get(this._normalizeUrl(link));
         if (parent) {
           parent.children.add(work);
           work.parents.add(parent);
@@ -61,5 +61,16 @@ export class WorkTreeBuilder {
       }
     }
     return links;
+  }
+
+  private _normalizeUrl(url: string): string {
+    if (url.endsWith("+s")) {
+      return url.slice(0, -2);
+    }
+    if (url.endsWith("+")) {
+      return url.slice(0, -1);
+    }
+
+    return url;
   }
 }
