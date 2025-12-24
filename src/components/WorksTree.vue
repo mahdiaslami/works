@@ -10,7 +10,7 @@ defineOptions({
 withDefaults(
   defineProps<{
     works: WorkCollection;
-    depth: number
+    depth?: number
   }>(),
   {
     depth: 0
