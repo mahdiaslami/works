@@ -4,7 +4,7 @@ import Tag from '@/components/ui/Tag.vue';
 import type { Work } from '@/domain';
 import { computed } from 'vue';
 
-const { work, depth } = withDefaults(
+const props = withDefaults(
   defineProps<{
     work: Work;
     depth?: number;
@@ -14,7 +14,7 @@ const { work, depth } = withDefaults(
   }
 );
 
-const marginStart = computed(() => depth * 16)
+const marginStart = computed(() => props.depth * 16)
 
 </script>
 
