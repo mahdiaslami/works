@@ -26,13 +26,18 @@ withDefaults(
 
       <details v-if="work.children.length">
         <summary class="no-marker">
-          <WorkCard :work="work" :depth="depth" />
+          <WorkCard :work="work"
+            :depth="depth" />
         </summary>
 
-        <WorkTree class="mt-2" :works="work.children" :depth="depth + 1" />
+        <WorkTree class="mt-2"
+          :works="work.children"
+          :depth="depth + 1" />
       </details>
 
-      <WorkCard v-else :work="work" :depth="depth" />
+      <WorkCard v-else
+        :work="work"
+        :depth="depth" />
     </template>
   </CardList>
 </template>
