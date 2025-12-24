@@ -7,9 +7,15 @@ defineOptions({
   name: 'WorkTree'
 })
 
-defineProps<{
-  works: WorkCollection;
-}>();
+withDefaults(
+  defineProps<{
+    works: WorkCollection;
+    depth: number
+  }>(),
+  {
+    depth: 0
+  }
+)
 
 </script>
 
@@ -20,13 +26,13 @@ defineProps<{
 
       <details v-if="work.children.length">
         <summary class="no-marker">
-          <WorkCard :work="work" />
+          <WorkCard :work="work" :depth="depth" />
         </summary>
 
-        <WorkTree class="mt-2 ms-4" :works="work.children" />
+        <WorkTree class="mt-2" :works="work.children" :depth="depth + 1" />
       </details>
 
-      <WorkCard v-else :work="work" />
+      <WorkCard v-else :work="work" :depth="depth" />
     </template>
   </CardList>
 </template>

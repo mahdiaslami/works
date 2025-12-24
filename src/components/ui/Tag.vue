@@ -9,7 +9,7 @@ const props = defineProps({
 })
 
 const classes = computed(() => {
-  const base = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium'
+  const base = 'px-2.5 py-0.5 rounded-full text-xs font-medium'
   const activeCls = 'bg-sky-200 text-sky-800 border border-sky-300'
   const inactiveCls = 'bg-slate-100 text-slate-700'
   return `${base} ${props.active ? activeCls : inactiveCls}`
