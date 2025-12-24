@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import Card from '@/components/ui/card/CardRoot.vue';
 import Tag from '@/components/ui/Tag.vue';
+import MicroArrowTurnDownRight from '@/components/icons/MicroArrowTurnDownRight.vue'
 import type { Work } from '@/domain';
 import { computed } from 'vue';
 
 const props = withDefaults(
   defineProps<{
     work: Work;
+    hasChildren?: boolean;
     depth?: number;
   }>(),
   {
+    hasChildren: false,
     depth: 0
   }
 );
@@ -21,8 +24,10 @@ const marginStart = computed(() => props.depth * 16)
 <template>
   <Card class="flex flex-row items-center p-3"
     :style="{ marginInlineStart: marginStart + 'px' }">
+    <MicroArrowTurnDownRight v-if="hasChildren" class="me-2 fill-slate-400 size-4" />
+
     <h2 class="text-sm truncate me-2"
-      :style="{ width: `calc(14rem - ${marginStart}px)` }">
+      :style="{ width: `calc(14rem - ${marginStart + (hasChildren ? 24 : 0)}px)` }">
       <a :href="work.webUrl"
         target="_blank"
         class="hover:text-sky-600 hover:underline">{{ work.title }}</a>

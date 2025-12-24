@@ -27,7 +27,8 @@ withDefaults(
       <details v-if="work.children.length">
         <summary class="no-marker">
           <WorkCard :work="work"
-            :depth="depth" />
+            :depth="depth"
+            has-children />
         </summary>
 
         <WorkTree class="mt-2"
