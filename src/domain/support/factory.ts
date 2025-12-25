@@ -23,6 +23,7 @@ export function fakeWork(kind: 'issue' | 'merge_request' = 'issue', projectName 
     title: faker.lorem.sentence(),
     author: fakeUser(),
     assignee: faker.datatype.boolean() ? fakeUser() : null,
-    webUrl: `https://gitlab.example.com/project/${projectName}/-/` + typePath + `/${iid}`
+    webUrl: `https://gitlab.example.com/project/${projectName}/-/` + typePath + `/${iid}`,
+    state: 'opened'
   } as Issue | MergeRequest;
 }
