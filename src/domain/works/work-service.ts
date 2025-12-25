@@ -14,12 +14,13 @@ export class WorkService {
    * Results are deduplicated by webUrl.
    */
   async get(): Promise<WorkCollection> {
-    const [created, assigned] = await Promise.all([
+    const [created, assigned, bookmarked] = await Promise.all([
       this.repo.issuesCreatedByMe(),
-      this.repo.issuesAssignedToMe()
+      this.repo.issuesAssignedToMe(),
+      this.repo.issuesReactedByPencil(),
     ]);
 
-    const merged = created.merge(assigned);
+    const merged = bookmarked.merge(created.merge(assigned));
     const tree = merged.buildTree()
     return tree.getOpened();
   }

@@ -21,6 +21,10 @@ export class WorkRepository implements IWorkRepository {
 
     return new WorkCollection(items);
   }
+
+  async issuesReactedByPencil(): Promise<WorkCollection> {
+    return new WorkCollection([]);
+  }
 }
 
 // --- Data ---

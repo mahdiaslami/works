@@ -27,4 +27,13 @@ export class WorkRepository implements IWorkRepository {
     const items = (assigned || []).filter(Boolean).map(i => new Work(i));
     return new WorkCollection(items);
   }
+
+  /**
+   * Retrieve issues that current user reaction was pencil.
+   */
+  async issuesReactedByPencil(): Promise<WorkCollection> {
+    const assigned = await this.gitlab.issues({ my_reaction_emoji: 'pencil', per_page: 100 });
+    const items = (assigned || []).filter(Boolean).map(i => new Work(i));
+    return new WorkCollection(items);
+  }
 }
