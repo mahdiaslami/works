@@ -252,6 +252,11 @@ export interface User {
   webUrl: string;
 }
 
+export type State = "opened"
+  | "closed"
+  | "locked"
+  | "merged"
+
 export interface MergeRequest {
   id: number,
   iid: number,
@@ -260,6 +265,7 @@ export interface MergeRequest {
   assignee: User | null;
   webUrl: string;
   description: string;
+  state: State;
 }
 
 export interface Issue {
@@ -270,6 +276,7 @@ export interface Issue {
   assignee: User | null;
   webUrl: string;
   description: string;
+  state: State;
 }
 
 export interface Todo {

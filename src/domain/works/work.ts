@@ -1,4 +1,4 @@
-import type { Issue, MergeRequest, User } from '../../types/gitlab';
+import type { Issue, IssueState, MergeRequest, MergeRequestState, State, User } from '../../types/gitlab';
 import { WorkCollection } from './work-collection';
 
 export class Work implements Issue, MergeRequest {
@@ -38,6 +38,10 @@ export class Work implements Issue, MergeRequest {
 
   get description(): string {
     return this._target.description;
+  }
+
+  get state(): State {
+    return this._target.state
   }
 
   get target(): Issue | MergeRequest {
