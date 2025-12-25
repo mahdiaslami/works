@@ -2,6 +2,7 @@
 import Container from '@/components/layout/BaseContainer.vue';
 import WorksTree from '@/components/WorksTree.vue';
 import { useWorkStore } from '@/stores/work';
+import FolderRoot from '@/components/ui/collapsible/FolderRoot.vue';
 
 const workStore = useWorkStore();
 </script>
@@ -12,6 +13,10 @@ const workStore = useWorkStore();
       Works
     </h1>
 
-    <WorksTree :works="workStore.works" />
+    <FolderRoot v-for="category in workStore.categories"
+      :key="category.id"
+      :title="category.name">
+      <WorksTree :works="category.works" />
+    </FolderRoot>
   </Container>
 </template>
