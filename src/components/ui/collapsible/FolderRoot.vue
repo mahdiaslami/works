@@ -24,6 +24,8 @@ function onToggle(ev: Event) {
       <span class="text-slate-700 font-medium">{{ title }}</span>
     </summary>
 
-    <slot></slot>
+    <slot>
+      <div class="px-3 py-2 text-sm text-slate-500 ms-2 mb-4">Folder is empty</div>
+    </slot>
   </details>
 </template>

@@ -16,7 +16,9 @@ const workStore = useWorkStore();
     <FolderRoot v-for="category in workStore.categories"
       :key="category.id"
       :title="category.name">
-      <WorksTree class="ms-2 mb-4" :works="category.works" />
+      <WorksTree v-if="category.works.length > 0"
+        class="ms-2 mb-4"
+        :works="category.works" />
     </FolderRoot>
   </Container>
 </template>
