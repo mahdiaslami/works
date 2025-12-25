@@ -22,11 +22,12 @@ const marginStart = computed(() => props.depth * 16)
 </script>
 
 <template>
-  <Card class="flex flex-row items-center p-3"
+  <Card class="flex flex-row items-center p-3 space-x-2"
     :style="{ marginInlineStart: marginStart + 'px' }">
-    <MicroArrowTurnDownRight v-if="hasChildren" class="me-2 fill-slate-400 size-4" />
+    <MicroArrowTurnDownRight v-if="hasChildren"
+      class="fill-slate-400 size-4" />
 
-    <h2 class="text-sm truncate me-2"
+    <h2 class="text-sm truncate"
       :style="{ width: `calc(14rem - ${marginStart + (hasChildren ? 24 : 0)}px)` }">
       <a :href="work.webUrl"
         target="_blank"
