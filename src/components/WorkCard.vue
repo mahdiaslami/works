@@ -4,6 +4,7 @@ import Tag from '@/components/ui/Tag.vue';
 import MicroArrowTurnDownRight from '@/components/icons/MicroArrowTurnDownRight.vue'
 import type { Work } from '@/domain';
 import { computed } from 'vue';
+import CircleDot from './icons/CircleDot.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -19,11 +20,24 @@ const props = withDefaults(
 
 const marginStart = computed(() => props.depth * 16)
 
+const stateColor = computed(() => {
+  if (props.work.state === 'opened') {
+    return 'stroke-sky-600'
+  } else if (props.work.effectiveState === 'opened') {
+    return 'stroke-purple-600'
+  }
+
+  return 'stroke-slate-300'
+})
+
 </script>
 
 <template>
   <Card class="flex flex-row items-center p-3 space-x-2"
     :style="{ marginInlineStart: marginStart + 'px' }">
+    <CircleDot class="size-5 stroke-2"
+      :class="[stateColor]" />
+
     <MicroArrowTurnDownRight v-if="hasChildren"
       class="fill-slate-400 size-4" />
 
