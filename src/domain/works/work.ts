@@ -1,4 +1,5 @@
 import type { Issue, IssueState, MergeRequest, MergeRequestState, State, User } from '../../types/gitlab';
+import type { Category } from '../categories/category';
 import { WorkCollection } from './work-collection';
 
 export class Work implements Issue, MergeRequest {
@@ -50,5 +51,9 @@ export class Work implements Issue, MergeRequest {
 
   get effectiveState(): State {
     return this.children.getEffectiveState() !== 'opened' ? this.state : 'opened'
+  }
+
+  belongsTo(category: Category): boolean {
+    return category.slugs.some(slug => this.webUrl.includes(slug));
   }
 }

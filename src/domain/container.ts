@@ -3,6 +3,7 @@ import { WorkRepository } from "./works/work-repository";
 import { WorkService } from "./services/work-service";
 import { GitLab } from "./support/gitlab";
 import { WorkRepository as FakeWorkRepository } from "./fakes/work-repository";
+import { CategoryRepository } from "./categories/category-repository";
 
 
 export const container = new Container
@@ -18,7 +19,11 @@ container.binding(WorkRepository, (c) => {
   }
   return new WorkRepository(c.make(GitLab));
 })
-container.binding(WorkService, (c) => new WorkService(c.make(WorkRepository)))
+container.binding(CategoryRepository, (c) => new CategoryRepository)
+container.binding(WorkService, (c) => new WorkService(
+  c.make(WorkRepository),
+  c.make(CategoryRepository)
+))
 
 function isTrue(env: any) {
   return env === 'true' || env === true

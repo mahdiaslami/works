@@ -1,12 +1,14 @@
 import { WorkRepository } from '../works/work-repository';
 import { Work } from '../works/work';
-import type { WorkCollection } from '../works/work-collection';
+import { WorkCollection } from '../works/work-collection';
+import { CategoryRepository } from '../categories/category-repository';
+import { Category } from '../categories/category';
 
 export class WorkService {
-  private repo: WorkRepository;
+  private categoryRepo: CategoryRepository;
 
-  constructor(repo: WorkRepository) {
-    this.repo = repo;
+  constructor(repo: WorkRepository, categoryRepo: CategoryRepository) {
+    this.categoryRepo = categoryRepo;
   }
 
   /**
@@ -23,5 +25,28 @@ export class WorkService {
     const merged = bookmarked.merge(created.merge(assigned));
     const tree = merged.buildTree()
     return tree.getOpened();
+  }
+
+  /**
+   * Retrieve all categories and populate their works property with matching works.
+   * Creates an "Other" category for works that don't belong to any defined category.
+   */
+  async categories(): Promise<Category[]> {
+    const works = await this.get();
+    const categories = await this.categoryRepo.all();
+
+    const otherCategory = new Category(0, 'Other', []);
+
+    for (const work of works.items) {
+      const hasCategory = categories.some((category) => {
+        const isBelongs = work.belongsTo(category)
+        if (isBelongs) category.works.add(work)
+        return isBelongs
+      })
+
+      if (!hasCategory) otherCategory.works.add(work)
+    }
+
+    return [...categories, otherCategory];
   }
 }
