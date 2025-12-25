@@ -1,6 +1,6 @@
 import { Container } from "@halliganjs/service-container";
 import { WorkRepository } from "./works/work-repository";
-import { WorkService } from "./works/work-service";
+import { WorkService } from "./services/work-service";
 import { GitLab } from "./support/gitlab";
 import { WorkRepository as FakeWorkRepository } from "./fakes/work-repository";
 

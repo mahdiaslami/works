@@ -1,6 +1,6 @@
-import { WorkRepository } from './work-repository';
-import { Work } from './work';
-import type { WorkCollection } from './work-collection';
+import { WorkRepository } from '../works/work-repository';
+import { Work } from '../works/work';
+import type { WorkCollection } from '../works/work-collection';
 
 export class WorkService {
   private repo: WorkRepository;
