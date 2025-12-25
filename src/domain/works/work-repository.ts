@@ -14,7 +14,7 @@ export class WorkRepository implements IWorkRepository {
    * Retrieve issues created by the current user as a WorkCollection.
    */
   async issuesCreatedByMe(): Promise<WorkCollection> {
-    const created = await this.gitlab.issues({ scope: 'created_by_me' });
+    const created = await this.gitlab.issues({ scope: 'created_by_me', per_page: 100 });
     const items = (created || []).filter(Boolean).map(i => new Work(i));
     return new WorkCollection(items);
   }
@@ -23,7 +23,7 @@ export class WorkRepository implements IWorkRepository {
    * Retrieve issues assigned to the current user as a WorkCollection.
    */
   async issuesAssignedToMe(): Promise<WorkCollection> {
-    const assigned = await this.gitlab.issues({ scope: 'assigned_to_me' });
+    const assigned = await this.gitlab.issues({ scope: 'assigned_to_me', per_page: 100 });
     const items = (assigned || []).filter(Boolean).map(i => new Work(i));
     return new WorkCollection(items);
   }
