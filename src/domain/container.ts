@@ -3,6 +3,7 @@ import { WorkRepository } from "./works/work-repository";
 import { WorkService } from "./services/work-service";
 import { GitLab } from "./support/gitlab";
 import { WorkRepository as FakeWorkRepository } from "./fakes/work-repository";
+import { CategoryRepository as FakeCategoryRepository } from "./fakes/category-repository";
 import { CategoryRepository } from "./categories/category-repository";
 
 export const container = new Container
@@ -19,7 +20,9 @@ container.binding(WorkRepository, (c) => {
 })
 
 container.binding(CategoryRepository, (c) => {
-  return new CategoryRepository
+  return isTrue(import.meta.env.VITE_FAKE)
+    ? new FakeCategoryRepository()
+    : new CategoryRepository()
 })
 
 container.binding(WorkService, (c) => new WorkService(

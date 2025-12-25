@@ -45,6 +45,7 @@ const issues: Issue[] = [
 
   { ...fakeWork(), assignee: me },
   { ...fakeWork(), assignee: me },
+  { ...fakeWork(), assignee: me },
 ];
 
 // Nested
@@ -66,3 +67,8 @@ issues[2]!.state = 'closed'
 issues[3]!.state = 'opened' // a child of child
 issues[4]!.state = 'opened' // a root
 issues[5]!.state = 'closed' // a root
+
+// Categories
+issues[0]!.webUrl = 'https://gitlab.com/first-group/first-project/issues/1'
+issues[4]!.webUrl = 'https://gitlab.com/first-group/first-project/issues/2'
+issues[5]!.webUrl = 'https://gitlab.com/second-group/second-project/issues/2'
