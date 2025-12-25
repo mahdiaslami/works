@@ -7,7 +7,7 @@ export const useWorkStore = defineStore('work', () => {
   const workService = container.make<WorkService>(WorkService)
   const works: Ref<WorkCollection> = ref<WorkCollection>(new WorkCollection())
 
-  workService.get().then((v) => works.value = v)
+  workService.works().then((v) => works.value = v)
 
   return { works }
 })

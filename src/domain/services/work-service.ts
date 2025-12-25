@@ -17,7 +17,7 @@ export class WorkService {
    * Retrieve issues created by the current user and issues assigned to them.
    * Results are deduplicated by webUrl.
    */
-  async get(): Promise<WorkCollection> {
+  async works(): Promise<WorkCollection> {
     const [created, assigned, bookmarked] = await Promise.all([
       this.workRepo.issuesCreatedByMe(),
       this.workRepo.issuesAssignedToMe(),
@@ -34,7 +34,7 @@ export class WorkService {
    * Creates an "Other" category for works that don't belong to any defined category.
    */
   async categories(): Promise<Category[]> {
-    const works = await this.get();
+    const works = await this.works();
     const categories = await this.categoryRepo.all();
 
     const otherCategory = new Category(0, 'Other', []);
