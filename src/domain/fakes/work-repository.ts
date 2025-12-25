@@ -38,9 +38,12 @@ const issues: Issue[] = [
   { ...fakeWork(), author: me, assignee: me },
   { ...fakeWork(), assignee: me },
   { ...fakeWork(), author: me },
+
+  { ...fakeWork(), assignee: me },
   { ...fakeWork(), assignee: me },
 ];
 
+// Nested
 issues[0]!.description = `
 [task]
 
@@ -51,3 +54,11 @@ issues[0]!.description = `
 `
 
 issues[3]!.description = `[parent ${issues[2]!.webUrl}]`
+
+// Closed & Opened
+issues[0]!.state = 'closed'
+issues[1]!.state = 'closed'
+issues[2]!.state = 'closed'
+issues[3]!.state = 'opened' // a child of child
+issues[4]!.state = 'opened' // a root
+issues[5]!.state = 'closed' // a root

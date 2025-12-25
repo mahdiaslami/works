@@ -47,4 +47,8 @@ export class Work implements Issue, MergeRequest {
   get target(): Issue | MergeRequest {
     return this._target;
   }
+
+  get effectiveState(): State {
+    return this.children.getEffectiveState() !== 'opened' ? this.state : 'opened'
+  }
 }

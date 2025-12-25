@@ -21,6 +21,6 @@ export class WorkService {
 
     const merged = created.merge(assigned);
     const tree = merged.buildTree()
-    return tree;
+    return tree.getOpened();
   }
 }

@@ -1,3 +1,4 @@
+import type { State } from '@/types/gitlab';
 import { Work } from './work';
 import { WorkTreeBuilder } from './work-tree-builder';
 
@@ -50,7 +51,15 @@ export class WorkCollection {
     return new WorkCollection(Array.from(map.values()));
   }
 
+  getOpened() {
+    return new WorkCollection(this._items.filter((w) => w.effectiveState === 'opened'))
+  }
+
   buildTree() {
     return new WorkCollection((new WorkTreeBuilder).resolve(this._items))
+  }
+
+  getEffectiveState(): State {
+    return this._items.some((w) => w.effectiveState === 'opened') ? 'opened' : 'closed'
   }
 }
