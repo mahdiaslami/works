@@ -5,9 +5,11 @@ import { CategoryRepository } from '../categories/category-repository';
 import { Category } from '../categories/category';
 
 export class WorkService {
+  private workRepo: WorkRepository;
   private categoryRepo: CategoryRepository;
 
-  constructor(repo: WorkRepository, categoryRepo: CategoryRepository) {
+  constructor(workRepo: WorkRepository, categoryRepo: CategoryRepository) {
+    this.workRepo = workRepo;
     this.categoryRepo = categoryRepo;
   }
 
@@ -17,9 +19,9 @@ export class WorkService {
    */
   async get(): Promise<WorkCollection> {
     const [created, assigned, bookmarked] = await Promise.all([
-      this.repo.issuesCreatedByMe(),
-      this.repo.issuesAssignedToMe(),
-      this.repo.issuesReactedByPencil(),
+      this.workRepo.issuesCreatedByMe(),
+      this.workRepo.issuesAssignedToMe(),
+      this.workRepo.issuesReactedByPencil(),
     ]);
 
     const merged = bookmarked.merge(created.merge(assigned));
