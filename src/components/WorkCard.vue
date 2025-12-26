@@ -5,6 +5,7 @@ import MicroArrowTurnDownRight from '@/components/icons/MicroArrowTurnDownRight.
 import type { Work } from '@/domain';
 import { computed } from 'vue';
 import CircleDot from './icons/CircleDot.vue';
+import { formatDuration } from '@/utils/helper';
 
 const props = withDefaults(
   defineProps<{
@@ -52,6 +53,13 @@ const stateColor = computed(() => {
       <Tag class="max-w-28 truncate">aut: {{ work.author.username }}</Tag>
       <Tag v-if="work.assignee"
         class="max-w-28 truncate">ass: {{ work.assignee?.username }}</Tag>
+    </div>
+
+    <div class="grow"></div>
+
+    <div class="flex items-center space-x-2">
+      <Tag class="max-w-28 truncate">es: {{ formatDuration(work.timeEstimate) }}</Tag>
+      <Tag class="max-w-28 truncate">sp: {{ formatDuration(work.totalTimeSpent) }}</Tag>
     </div>
   </Card>
 </template>
