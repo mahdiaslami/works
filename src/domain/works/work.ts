@@ -45,6 +45,14 @@ export class Work implements Issue, MergeRequest {
     return this._target.state
   }
 
+  get timeEstimate(): number {
+    return this._target.timeEstimate
+  }
+
+  get totalTimeSpent(): number {
+    return this._target.timeEstimate
+  }
+
   get target(): Issue | MergeRequest {
     return this._target;
   }

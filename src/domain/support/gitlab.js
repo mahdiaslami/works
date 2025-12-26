@@ -70,6 +70,8 @@ export class GitLab {
       description: item.description,
       state: item.state,
       webUrl: item.web_url,
+      timeEstimate: item.time_stats.time_estimate,
+      totalTimeSpent: item.time_stats.total_time_spent,
     };
   }
 

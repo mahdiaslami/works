@@ -266,6 +266,8 @@ export interface MergeRequest {
   webUrl: string;
   description: string;
   state: State;
+  timeEstimate: number,
+  totalTimeSpent: number,
 }
 
 export interface Issue {
@@ -277,6 +279,8 @@ export interface Issue {
   webUrl: string;
   description: string;
   state: State;
+  timeEstimate: number,
+  totalTimeSpent: number,
 }
 
 export interface Todo {
