@@ -69,7 +69,7 @@ export class GitLab {
       assignee,
       description: item.description,
       state: item.state,
-      webUrl: item?.web_url ?? item?.webUrl
+      webUrl: item.web_url,
     };
   }
 
