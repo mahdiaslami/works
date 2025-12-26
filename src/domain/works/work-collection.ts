@@ -62,4 +62,18 @@ export class WorkCollection {
   getEffectiveState(): State {
     return this._items.some((w) => w.effectiveState === 'opened') ? 'opened' : 'closed'
   }
+
+  getTotalTimeEstimate() {
+    return this._items.reduce(
+      (sum, child) => sum + child.selfTimeEstimate,
+      0
+    )
+  }
+
+  getTotalTimeSpend() {
+    return this._items.reduce(
+      (sum, child) => sum + child.totalTimeSpent,
+      0
+    )
+  }
 }
