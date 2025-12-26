@@ -21,9 +21,12 @@ export function fakeWork(kind: 'issue' | 'merge_request' = 'issue', projectName 
     id,
     iid,
     title: faker.lorem.sentence(),
+    description: faker.lorem.sentences(5),
     author: fakeUser(),
     assignee: faker.datatype.boolean() ? fakeUser() : null,
     webUrl: `https://gitlab.example.com/project/${projectName}/-/` + typePath + `/${iid}`,
-    state: 'opened'
-  } as Issue | MergeRequest;
+    state: 'opened',
+    timeEstimate: faker.number.int({ min: 300, max: 16_000_000 }),
+    totalTimeSpent: faker.number.int({ min: 300, max: 1_000_000 }),
+  };
 }
