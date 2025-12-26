@@ -49,9 +49,9 @@ const stateColor = computed(() => {
     </h2>
 
     <div class="flex items-center space-x-2">
-      <Tag class="w-28 truncate">aut: {{ work.author.username }}</Tag>
+      <Tag class="max-w-28 truncate">aut: {{ work.author.username }}</Tag>
       <Tag v-if="work.assignee"
-        class="w-28 truncate">ass: {{ work.assignee?.username }}</Tag>
+        class="max-w-28 truncate">ass: {{ work.assignee?.username }}</Tag>
     </div>
   </Card>
 </template>
