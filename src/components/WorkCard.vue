@@ -5,7 +5,7 @@ import MicroArrowTurnDownRight from '@/components/icons/MicroArrowTurnDownRight.
 import type { Work } from '@/domain';
 import { computed } from 'vue';
 import CircleDot from './icons/CircleDot.vue';
-import { formatDuration } from '@/utils/helper';
+import { formatGitLabDuration } from '@/utils/helper';
 import TooltipRoot from './ui/tooltip/TooltipRoot.vue';
 import TooltipReference from './ui/tooltip/TooltipReference.vue';
 import TooltipContent from './ui/tooltip/TooltipContent.vue';
@@ -64,21 +64,22 @@ const stateColor = computed(() => {
       <TooltipRoot>
         <TooltipReference>
           <div class="flex flex-col text-xs -my-3 text-slate-400">
-            <div class="w-28 truncate">es: {{ formatDuration(work.timeEstimate) }}</div>
-            <div class="w-28 truncate">sp: {{ formatDuration(work.totalTimeSpent) }}</div>
+            <div class="w-28 truncate">es: {{ formatGitLabDuration(work.timeEstimate) }}</div>
+            <div class="w-28 truncate">sp: {{ formatGitLabDuration(work.totalTimeSpent) }}</div>
           </div>
         </TooltipReference>
 
         <TooltipContent placement="bottom">
           <div class="text-xs grid grid-cols-2 text-slate-700">
             <div>
-              <div class="p-2">Self Estimate: <br> {{ formatDuration(work.selfTimeEstimate) }}</div>
-              <div class="p-2">Child Estimate: <br> {{ formatDuration(work.children.getTotalTimeEstimate()) }}</div>
+              <div class="p-2">Self Estimate: <br> {{ formatGitLabDuration(work.selfTimeEstimate) }}</div>
+              <div class="p-2">Child Estimate: <br> {{ formatGitLabDuration(work.children.getTotalTimeEstimate()) }}
+              </div>
             </div>
 
             <div>
-              <div class="p-2">Self Spend: <br> {{ formatDuration(work.selfTimeSpent) }}</div>
-              <div class="p-2">Child Spend: <br> {{ formatDuration(work.children.getTotalTimeSpend()) }}</div>
+              <div class="p-2">Self Spend: <br> {{ formatGitLabDuration(work.selfTimeSpent) }}</div>
+              <div class="p-2">Child Spend: <br> {{ formatGitLabDuration(work.children.getTotalTimeSpend()) }}</div>
             </div>
           </div>
         </TooltipContent>

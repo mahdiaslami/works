@@ -23,3 +23,34 @@ export function formatDuration(totalSeconds: number): string {
 
   return parts.length ? parts.join(' ') : '0s';
 }
+
+export function formatGitLabDuration(totalSeconds: number): string {
+  const HOUR = 60 * 60;
+  const DAY = 8 * HOUR;
+  const WEEK = 5 * DAY;
+  const MONTH = 20 * DAY;
+  const YEAR = 12 * MONTH;
+
+  const units = [
+    { label: 'y', value: YEAR },
+    { label: 'mo', value: MONTH },
+    { label: 'w', value: WEEK },
+    { label: 'd', value: DAY },
+    { label: 'h', value: HOUR },
+    { label: 'm', value: 60 },
+    { label: 's', value: 1 },
+  ];
+
+  let remaining = Math.max(0, Math.floor(totalSeconds));
+  const parts: string[] = [];
+
+  for (const { label, value } of units) {
+    const amount = Math.floor(remaining / value);
+    if (amount > 0) {
+      parts.push(`${amount}${label}`);
+      remaining %= value;
+    }
+  }
+
+  return parts.length ? parts.join(' ') : '0s';
+}
