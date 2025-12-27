@@ -45,8 +45,9 @@ const stateColor = computed(() => {
     <MicroArrowTurnDownRight v-if="hasChildren"
       class="fill-slate-400 size-4" />
 
-    <h2 class="text-sm truncate"
-      :style="{ width: `calc(14rem - ${marginStart + (hasChildren ? 24 : 0)}px)` }">
+    <h2 class="text-sm truncate text-left"
+      :style="{ width: `calc(14rem - ${marginStart + (hasChildren ? 24 : 0)}px)` }"
+      dir="auto">
       <a :href="work.webUrl"
         target="_blank"
         class="hover:text-sky-600 hover:underline">{{ work.title }}</a>
