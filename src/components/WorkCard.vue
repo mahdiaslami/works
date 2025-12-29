@@ -5,10 +5,8 @@ import IconMicroArrowTurnDownRight from '@/components/icons/IconMicroArrowTurnDo
 import type { Work } from '@/domain';
 import { computed } from 'vue';
 import IconCircleDot from './icons/IconCircleDot.vue';
-import { formatGitLabDuration } from '@/utils/helper';
-import TooltipRoot from './ui/tooltip/TooltipRoot.vue';
-import TooltipReference from './ui/tooltip/TooltipReference.vue';
-import TooltipContent from './ui/tooltip/TooltipContent.vue';
+import WorkCardTimeTracking from './WorkCardTimeTracking.vue';
+
 
 const props = withDefaults(
   defineProps<{
@@ -61,30 +59,8 @@ const stateColor = computed(() => {
 
     <div class="grow"></div>
 
-    <div class="flex items-center space-x-2">
-      <TooltipRoot>
-        <TooltipReference>
-          <div class="flex flex-col text-xs -my-3 text-slate-400">
-            <div class="w-28 truncate">es: {{ formatGitLabDuration(work.timeEstimate) }}</div>
-            <div class="w-28 truncate">sp: {{ formatGitLabDuration(work.totalTimeSpent) }}</div>
-          </div>
-        </TooltipReference>
-
-        <TooltipContent placement="bottom">
-          <div class="text-xs grid grid-cols-2 text-slate-700">
-            <div>
-              <div class="p-2">Self Estimate: <br> {{ formatGitLabDuration(work.selfTimeEstimate) }}</div>
-              <div class="p-2">Child Estimate: <br> {{ formatGitLabDuration(work.children.getTotalTimeEstimate()) }}
-              </div>
-            </div>
-
-            <div>
-              <div class="p-2">Self Spend: <br> {{ formatGitLabDuration(work.selfTimeSpent) }}</div>
-              <div class="p-2">Child Spend: <br> {{ formatGitLabDuration(work.children.getTotalTimeSpend()) }}</div>
-            </div>
-          </div>
-        </TooltipContent>
-      </TooltipRoot>
+    <div class="-my-3">
+      <WorkCardTimeTracking :work="work" />
     </div>
   </Card>
 </template>
