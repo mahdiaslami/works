@@ -21,7 +21,7 @@ export function formatDuration(totalSeconds: number): string {
     }
   }
 
-  return parts.length ? parts.join(' ') : '0s';
+  return parts.length ? parts.join(' ') : '-';
 }
 
 export function formatGitLabDuration(totalSeconds: number): string {
@@ -52,5 +52,5 @@ export function formatGitLabDuration(totalSeconds: number): string {
     }
   }
 
-  return parts.length ? parts.join(' ') : '0s';
+  return parts.length ? parts.join(' ') : '-';
 }
