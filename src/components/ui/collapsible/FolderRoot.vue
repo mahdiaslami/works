@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import FolderOpen from '@/components/icons/FolderOpen.vue';
-import FolderClose from '@/components/icons/FolderClose.vue';
+import IconFolderOpen from '@/components/icons/IconFolderOpen.vue';
+import IconFolderClose from '@/components/icons/IconFolderClose.vue';
 import { ref } from 'vue';
 
 defineProps<{
@@ -19,13 +19,13 @@ function onToggle(ev: Event) {
   <details @toggle="ev => onToggle(ev)">
     <summary class="flex items-center space-x-2 cursor-pointer mb-4">
       <component class="size-6 stroke-slate-500"
-        :is="opened ? FolderOpen : FolderClose" />
+        :is="opened ? IconFolderOpen : IconFolderClose" />
 
       <span class="text-slate-700 font-medium">{{ title }}</span>
     </summary>
 
     <slot>
-      <div class="px-3 py-2 text-sm text-slate-500 ms-2 mb-4">Folder is empty</div>
+      <div class="px-3 py-2 text-sm text-slate-500 ms-2 mb-4">IconFolder is empty</div>
     </slot>
   </details>
 </template>

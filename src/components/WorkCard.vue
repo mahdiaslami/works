@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import Card from '@/components/ui/card/CardRoot.vue';
 import Tag from '@/components/ui/Tag.vue';
-import MicroArrowTurnDownRight from '@/components/icons/MicroArrowTurnDownRight.vue'
+import IconMicroArrowTurnDownRight from '@/components/icons/IconMicroArrowTurnDownRight.vue'
 import type { Work } from '@/domain';
 import { computed } from 'vue';
-import CircleDot from './icons/CircleDot.vue';
+import IconCircleDot from './icons/IconCircleDot.vue';
 import { formatGitLabDuration } from '@/utils/helper';
 import TooltipRoot from './ui/tooltip/TooltipRoot.vue';
 import TooltipReference from './ui/tooltip/TooltipReference.vue';
@@ -39,10 +39,10 @@ const stateColor = computed(() => {
 <template>
   <Card class="flex flex-row items-center p-3 space-x-2"
     :style="{ marginInlineStart: marginStart + 'px' }">
-    <CircleDot class="size-5 stroke-2"
+    <IconCircleDot class="size-5 stroke-2"
       :class="[stateColor]" />
 
-    <MicroArrowTurnDownRight v-if="hasChildren"
+    <IconMicroArrowTurnDownRight v-if="hasChildren"
       class="fill-slate-400 size-4" />
 
     <h2 class="text-sm truncate text-left"
