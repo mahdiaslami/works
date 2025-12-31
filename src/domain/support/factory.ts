@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { User, Issue, MergeRequest } from '../../types/gitlab';
+import type { User, Issue } from '../../types/gitlab';
 
 export function fakeUser(): User {
 
@@ -13,10 +13,10 @@ export function fakeUser(): User {
   } as User;
 }
 
-export function fakeWork(
+export function fakeIssue(
   projectName = faker.color.human(),
   kind: 'issue' | 'merge_request' = 'issue',
-): Issue | MergeRequest {
+): Issue {
   const iid = faker.number.int({ min: 100, max: 9999 });
   const id = faker.number.int({ min: 1, max: 999999 });
   const typePath = kind === 'issue' ? 'issues' : 'merge_requests';
@@ -38,5 +38,5 @@ export function fakeIssues(
   projectName = faker.color.human(),
   count = 1
 ): Issue[] {
-  return Array.from({ length: count }, () => fakeWork(projectName, 'issue'));
+  return Array.from({ length: count }, () => fakeIssue(projectName, 'issue'));
 }

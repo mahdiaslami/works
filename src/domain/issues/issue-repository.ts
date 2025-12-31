@@ -1,9 +1,9 @@
-import type { WorkRepository as IWorkRepository } from '../contracts/work-repository';
+import type { IssueRepository as IIssueRepository } from '../contracts/issue-repository.ts';
 import { GitLab } from '../support/gitlab.js';
-import { Work } from './work';
-import { WorkCollection } from './work-collection';
+import { Issue } from './issue.ts';
+import { IssueCollection } from './issue-collection.ts';
 
-export class WorkRepository implements IWorkRepository {
+export class IssueRepository implements IIssueRepository {
   private gitlab: GitLab;
 
   constructor(gitlab: GitLab) {
@@ -11,36 +11,36 @@ export class WorkRepository implements IWorkRepository {
   }
 
   /**
-   * Retrieve issues created by the current user as a WorkCollection.
+   * Retrieve issues created by the current user as a IssueCollection.
    */
-  async issuesCreatedByMe(): Promise<WorkCollection> {
+  async issuesCreatedByMe(): Promise<IssueCollection> {
     const created = await this.gitlab.issues({
       scope: 'created_by_me', per_page: 100, order_by: 'updated_at', sort: 'desc'
     });
-    const items = (created || []).map(i => new Work(i));
-    return new WorkCollection(items);
+    const items = (created || []).map(i => new Issue(i));
+    return new IssueCollection(items);
   }
 
   /**
-   * Retrieve issues assigned to the current user as a WorkCollection.
+   * Retrieve issues assigned to the current user as a IssueCollection.
    */
-  async issuesAssignedToMe(): Promise<WorkCollection> {
+  async issuesAssignedToMe(): Promise<IssueCollection> {
     const assigned = await this.gitlab.issues({
       scope: 'assigned_to_me', per_page: 100, order_by: 'updated_at', sort: 'desc'
     });
-    const items = (assigned || []).map(i => new Work(i));
-    return new WorkCollection(items);
+    const items = (assigned || []).map(i => new Issue(i));
+    return new IssueCollection(items);
   }
 
   /**
    * Retrieve issues that current user reaction was pencil.
    */
-  async issuesReactedByPencil(): Promise<WorkCollection> {
+  async issuesReactedByPencil(): Promise<IssueCollection> {
     const reacted = await this.gitlab.issues({
       my_reaction_emoji: 'pencil', per_page: 100, order_by: 'updated_at', sort: 'desc'
     });
-    const items = (reacted || []).map(i => new Work(i));
-    return new WorkCollection(items);
+    const items = (reacted || []).map(i => new Issue(i));
+    return new IssueCollection(items);
   }
 
   /**

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import CardList from '@/components/ui/card/CardList.vue';
-import WorkCard from './WorkCard.vue';
-import type { WorkCollection } from '@/domain/works/work-collection';
+import IssueCard from './IssueCard.vue';
+import type { IssueCollection } from '@/domain/issues/issue-collection';
 
 defineOptions({
-  name: 'WorkTree'
+  name: 'IssueTree'
 })
 
 withDefaults(
   defineProps<{
-    works: WorkCollection;
+    issues: IssueCollection;
     depth?: number
   }>(),
   {
@@ -21,23 +21,23 @@ withDefaults(
 
 <template>
   <CardList>
-    <template v-for="work in works.toArray()"
-      :key="work.id">
+    <template v-for="issue in issues.toArray()"
+      :key="issue.id">
 
-      <details v-if="work.children.length">
+      <details v-if="issue.children.length">
         <summary class="no-marker">
-          <WorkCard :work="work"
+          <IssueCard :issue="issue"
             :depth="depth"
             has-children />
         </summary>
 
-        <WorkTree class="mt-2"
-          :works="work.children"
+        <IssueTree class="mt-2"
+          :issues="issue.children"
           :depth="depth + 1" />
       </details>
 
-      <WorkCard v-else
-        :work="work"
+      <IssueCard v-else
+        :issue="issue"
         :depth="depth" />
     </template>
   </CardList>

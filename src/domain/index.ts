@@ -1,3 +1,3 @@
 export { container } from './container'
-export { WorkService } from './services/work-service'
-export { Work } from './works/work'
+export { IssueService } from './services/issue-service'
+export { Issue } from './issues/issue'

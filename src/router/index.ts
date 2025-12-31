@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import WorkPage from '@/pages/WorkPage.vue'
+import IssuePage from '@/pages/IssuePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       name: 'Home',
       path: '/',
-      component: WorkPage
+      component: IssuePage
     }
   ],
 })

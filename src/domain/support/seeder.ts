@@ -1,5 +1,5 @@
 import type { Issue, User } from "@/types/gitlab";
-import { fakeIssues, fakeWork } from "./factory";
+import { fakeIssues, fakeIssue } from "./factory";
 
 export const me = {
   id: 1,
@@ -19,23 +19,23 @@ export const issues: Issue[] = [
 function authorAndAssignee() {
   return [
     {
-      ...fakeWork(),
+      ...fakeIssue(),
       author: me
     },
     {
-      ...fakeWork(),
+      ...fakeIssue(),
       author: me,
       assignee: me
     },
     {
-      ...fakeWork(),
+      ...fakeIssue(),
       assignee: me
     },
   ]
 }
 
 function nested() {
-  const issues = [fakeWork('nested'), fakeWork(), fakeWork(), fakeWork()]
+  const issues = [fakeIssue('nested'), fakeIssue(), fakeIssue(), fakeIssue()]
   issues[0]!.description = `
 [task]
 

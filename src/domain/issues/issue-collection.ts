@@ -1,15 +1,15 @@
 import type { State } from '@/types/gitlab';
-import { Work } from './work';
-import { WorkTreeBuilder } from './work-tree-builder';
+import { Issue } from './issue';
+import { IssueTreeBuilder } from './issue-tree-builder';
 
-export class WorkCollection {
-  _items: Work[];
+export class IssueCollection {
+  _items: Issue[];
 
-  constructor(items?: Work[]) {
+  constructor(items?: Issue[]) {
     this._items = items ?? [];
   }
 
-  get items(): Work[] {
+  get items(): Issue[] {
     return this._items;
   }
 
@@ -17,50 +17,50 @@ export class WorkCollection {
     return this._items.length;
   }
 
-  add(item: Work): void {
+  add(item: Issue): void {
     this._items.push(item);
   }
 
-  addMany(items: Work[]): void {
+  addMany(items: Issue[]): void {
     this._items.push(...items);
   }
 
-  findById(id: number): Work | undefined {
+  findById(id: number): Issue | undefined {
     return this._items.find(i => i.id === id);
   }
 
-  toArray(): Work[] {
+  toArray(): Issue[] {
     return [...this._items];
   }
 
   /**
-   * Merge this collection with another WorkCollection or an array of Work.
-   * Returns a new WorkCollection instance containing deduplicated works by webUrl.
+   * Merge this collection with another IssueCollection or an array of Issue.
+   * Returns a new IssueCollection instance containing deduplicated issues by webUrl.
    */
-  merge(input: Work[] | WorkCollection): WorkCollection {
-    const others: Work[] = input instanceof WorkCollection ? input.items : input;
+  merge(input: Issue[] | IssueCollection): IssueCollection {
+    const others: Issue[] = input instanceof IssueCollection ? input.items : input;
     const combined = [...this._items, ...(others ?? [])];
 
-    const map = new Map<string, Work>();
+    const map = new Map<string, Issue>();
     for (const item of combined) {
       if (!item) continue;
       const key = item.webUrl;
       if (!map.has(key)) map.set(key, item);
     }
 
-    return new WorkCollection(Array.from(map.values()));
+    return new IssueCollection(Array.from(map.values()));
   }
 
   getOpened() {
-    return new WorkCollection(this._items.filter((w) => w.effectiveState === 'opened'))
+    return new IssueCollection(this._items.filter((w) => w.effectiveState === 'opened'))
   }
 
   withoutCompleted(completed: Set<number>) {
-    return new WorkCollection(this._items.filter((w) => !w.isCompleted(completed)))
+    return new IssueCollection(this._items.filter((w) => !w.isCompleted(completed)))
   }
 
   buildTree() {
-    return new WorkCollection((new WorkTreeBuilder).resolve(this._items))
+    return new IssueCollection((new IssueTreeBuilder).resolve(this._items))
   }
 
   getEffectiveState(): State {

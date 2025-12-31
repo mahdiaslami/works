@@ -2,15 +2,15 @@
 import Card from '@/components/ui/card/CardRoot.vue';
 import Tag from '@/components/ui/Tag.vue';
 import IconMicroArrowTurnDownRight from '@/components/icons/IconMicroArrowTurnDownRight.vue'
-import type { Work } from '@/domain';
+import type { Issue } from '@/domain';
 import { computed } from 'vue';
 import IconCircleDot from './icons/IconCircleDot.vue';
-import WorkCardTimeTracking from './WorkCardTimeTracking.vue';
+import IssueCardTimeTracking from './IssueCardTimeTracking.vue';
 
 
 const props = withDefaults(
   defineProps<{
-    work: Work;
+    issue: Issue;
     hasChildren?: boolean;
     depth?: number;
   }>(),
@@ -23,9 +23,9 @@ const props = withDefaults(
 const marginStart = computed(() => props.depth * 16)
 
 const stateColor = computed(() => {
-  if (props.work.state === 'opened') {
+  if (props.issue.state === 'opened') {
     return 'stroke-sky-600'
-  } else if (props.work.effectiveState === 'opened') {
+  } else if (props.issue.effectiveState === 'opened') {
     return 'stroke-purple-600'
   }
 
@@ -46,21 +46,21 @@ const stateColor = computed(() => {
     <h2 class="text-sm truncate text-left"
       :style="{ width: `calc(14rem - ${marginStart + (hasChildren ? 24 : 0)}px)` }"
       dir="auto">
-      <a :href="work.webUrl"
+      <a :href="issue.webUrl"
         target="_blank"
-        class="hover:text-sky-600 hover:underline">{{ work.title }}</a>
+        class="hover:text-sky-600 hover:underline">{{ issue.title }}</a>
     </h2>
 
     <div class="flex items-center space-x-2">
-      <Tag class="max-w-28 truncate">aut: {{ work.author.username }}</Tag>
-      <Tag v-if="work.assignee"
-        class="max-w-28 truncate">ass: {{ work.assignee?.username }}</Tag>
+      <Tag class="max-w-28 truncate">aut: {{ issue.author.username }}</Tag>
+      <Tag v-if="issue.assignee"
+        class="max-w-28 truncate">ass: {{ issue.assignee?.username }}</Tag>
     </div>
 
     <div class="grow"></div>
 
     <div class="-my-3">
-      <WorkCardTimeTracking :work="work" />
+      <IssueCardTimeTracking :issue="issue" />
     </div>
   </Card>
 </template>

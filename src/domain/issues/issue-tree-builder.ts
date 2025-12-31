@@ -1,32 +1,32 @@
-import type { Work } from "./work";
+import type { Issue } from "./issue";
 
-export class WorkTreeBuilder {
-  resolve(works: Work[]): Work[] {
-    const byUrl = new Map<string, Work>();
-    works.forEach(w => byUrl.set(w.webUrl, w));
+export class IssueTreeBuilder {
+  resolve(issues: Issue[]): Issue[] {
+    const byUrl = new Map<string, Issue>();
+    issues.forEach(w => byUrl.set(w.webUrl, w));
 
-    for (const work of works) {
-      const childLinks = this._extractUrlsBetweenTaskTag(work.description);
+    for (const issue of issues) {
+      const childLinks = this._extractUrlsBetweenTaskTag(issue.description);
 
       for (const link of childLinks) {
         const child = byUrl.get(this._normalizeUrl(link));
         if (child) {
-          work.children.add(child);
-          child.parents.add(work);
+          issue.children.add(child);
+          child.parents.add(issue);
         }
       }
 
-      const parentLinks = this._extractUrlsFromParentTag(work.description);
+      const parentLinks = this._extractUrlsFromParentTag(issue.description);
       for (const link of parentLinks) {
         const parent = byUrl.get(this._normalizeUrl(link));
         if (parent) {
-          parent.children.add(work);
-          work.parents.add(parent);
+          parent.children.add(issue);
+          issue.parents.add(parent);
         }
       }
     }
 
-    return works.filter((work) => work.parents.length === 0);
+    return issues.filter((issue) => issue.parents.length === 0);
   }
 
   _extractUrlsBetweenTaskTag(description: string): string[] {

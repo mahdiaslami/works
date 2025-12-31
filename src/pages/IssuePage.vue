@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import Container from '@/components/layout/BaseContainer.vue';
-import WorksTree from '@/components/WorksTree.vue';
-import { useWorkStore } from '@/stores/work';
+import IssuesTree from '@/components/IssuesTree.vue';
+import { useIssueStore } from '@/stores/issue';
 import FolderRoot from '@/components/ui/collapsible/FolderRoot.vue';
 
-const workStore = useWorkStore();
+const issueStore = useIssueStore();
 </script>
 
 <template>
   <Container class="py-10">
     <h1 class="text-3xl font-semibold text-slate-600 pb-2 mb-6 border-b border-slate-200 leading-tight">
-      Works
+      Issues
     </h1>
 
-    <FolderRoot v-for="category in workStore.categories"
+    <FolderRoot v-for="category in issueStore.categories"
       :key="category.id"
       :title="category.name">
-      <WorksTree v-if="category.works.length > 0"
+      <IssuesTree v-if="category.issues.length > 0"
         class="ms-2 mb-4"
-        :works="category.works" />
+        :issues="category.issues" />
     </FolderRoot>
   </Container>
 </template>

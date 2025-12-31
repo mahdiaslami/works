@@ -1,16 +1,16 @@
-import type { Issue, IssueState, MergeRequest, MergeRequestState, State, User } from '../../types/gitlab';
+import type { Issue as IIssue, State, User } from '../../types/gitlab';
 import type { Category } from '../categories/category';
-import { WorkCollection } from './work-collection';
+import { IssueCollection } from './issue-collection';
 
-export class Work implements Issue, MergeRequest {
-  _target: Issue | MergeRequest;
-  children: WorkCollection;
-  parents: WorkCollection;
+export class Issue implements IIssue {
+  _target: IIssue;
+  children: IssueCollection;
+  parents: IssueCollection;
 
-  constructor(target: Issue | MergeRequest) {
+  constructor(target: IIssue) {
     this._target = target;
-    this.children = new WorkCollection();
-    this.parents = new WorkCollection();
+    this.children = new IssueCollection();
+    this.parents = new IssueCollection();
   }
 
   get id(): number {
@@ -62,7 +62,7 @@ export class Work implements Issue, MergeRequest {
       this.children.getTotalTimeSpend();
   }
 
-  get target(): Issue | MergeRequest {
+  get target(): IIssue {
     return this._target;
   }
 
