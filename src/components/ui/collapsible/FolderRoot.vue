@@ -25,7 +25,7 @@ function onToggle(ev: Event) {
     </summary>
 
     <slot>
-      <div class="px-3 py-2 text-sm text-slate-500 ms-2 mb-4">IconFolder is empty</div>
+      <div class="px-3 py-2 text-sm text-slate-500 ms-2 mb-4">Folder is empty</div>
     </slot>
   </details>
 </template>
