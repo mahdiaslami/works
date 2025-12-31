@@ -13,6 +13,7 @@ export const issues: Issue[] = [
   ...authorAndAssignee(),
   ...nested(),
   ...closedAndOpened(),
+  ...openedButCompleted(),
 ]
 
 function authorAndAssignee() {
@@ -61,6 +62,12 @@ function closedAndOpened() {
   return issues
 }
 
+function openedButCompleted() {
+  const issues = fakeIssues('opened-but-completed', 1)
+  issues[0]!.id = 1000;
+  return issues
+}
+
 export const categories = [
   {
     id: 1,
@@ -74,6 +81,13 @@ export const categories = [
     name: 'Closed & Opened',
     slugs: [
       'closed-and-opened'
+    ]
+  },
+  {
+    id: 2,
+    name: 'Opened but Completed',
+    slugs: [
+      'opened-but-completed'
     ]
   },
 ]

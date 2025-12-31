@@ -36,4 +36,14 @@ export class WorkRepository implements IWorkRepository {
     const items = (reacted || []).filter(Boolean).map(i => new Work(i));
     return new WorkCollection(items);
   }
+
+  /**
+   * Retrieve id of issues that current user reaction was was white_check_mark.
+   */
+  async issuesReactedByWhiteCheckMark(): Promise<Set<number>> {
+    const reacted = await this.gitlab.issues({ my_reaction_emoji: 'white_check_mark', per_page: 100 });
+    const result = new Set<number>();
+    (reacted || []).forEach((i) => result.add(i.id));
+    return result
+  }
 }

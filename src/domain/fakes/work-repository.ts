@@ -26,4 +26,8 @@ export class WorkRepository implements IWorkRepository {
 
     return new WorkCollection(items);
   }
+
+  async issuesReactedByWhiteCheckMark(): Promise<Set<number>> {
+    return new Set<number>([1000])
+  }
 }

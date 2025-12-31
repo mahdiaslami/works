@@ -4,4 +4,5 @@ export interface WorkRepository {
   issuesCreatedByMe(): Promise<WorkCollection>;
   issuesAssignedToMe(): Promise<WorkCollection>;
   issuesReactedByPencil(): Promise<WorkCollection>;
+  issuesReactedByWhiteCheckMark(): Promise<Set<number>>
 }
