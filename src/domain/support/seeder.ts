@@ -71,7 +71,7 @@ export const categories = [
   },
   {
     id: 2,
-    name: 'Closed&Opened',
+    name: 'Closed & Opened',
     slugs: [
       'closed-and-opened'
     ]
