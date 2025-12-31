@@ -73,4 +73,8 @@ export class Work implements Issue, MergeRequest {
   belongsTo(category: Category): boolean {
     return category.slugs.some(slug => this.webUrl.includes(slug));
   }
+
+  isCompleted(completed: Set<number>) {
+    return this.description.includes('[Done]') || completed.has(this.id)
+  }
 }

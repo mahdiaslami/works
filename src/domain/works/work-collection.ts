@@ -55,6 +55,10 @@ export class WorkCollection {
     return new WorkCollection(this._items.filter((w) => w.effectiveState === 'opened'))
   }
 
+  withoutCompleted(completed: Set<number>) {
+    return new WorkCollection(this._items.filter((w) => !w.isCompleted(completed)))
+  }
+
   buildTree() {
     return new WorkCollection((new WorkTreeBuilder).resolve(this._items))
   }

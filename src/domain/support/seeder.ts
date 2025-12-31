@@ -63,8 +63,9 @@ function closedAndOpened() {
 }
 
 function openedButCompleted() {
-  const issues = fakeIssues('opened-but-completed', 1)
+  const issues = fakeIssues('opened-but-completed', 2)
   issues[0]!.id = 1000;
+  issues[1]!.description = '[Done]'
   return issues
 }
 
