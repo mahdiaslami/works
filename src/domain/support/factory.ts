@@ -13,7 +13,10 @@ export function fakeUser(): User {
   } as User;
 }
 
-export function fakeWork(kind: 'issue' | 'merge_request' = 'issue', projectName = faker.color.human()): Issue | MergeRequest {
+export function fakeWork(
+  projectName = faker.color.human(),
+  kind: 'issue' | 'merge_request' = 'issue',
+): Issue | MergeRequest {
   const iid = faker.number.int({ min: 100, max: 9999 });
   const id = faker.number.int({ min: 1, max: 999999 });
   const typePath = kind === 'issue' ? 'issues' : 'merge_requests';
@@ -29,4 +32,11 @@ export function fakeWork(kind: 'issue' | 'merge_request' = 'issue', projectName 
     timeEstimate: faker.number.int({ min: 300, max: 16_000_000 }),
     totalTimeSpent: faker.number.int({ min: 300, max: 1_000_000 }),
   };
+}
+
+export function fakeIssues(
+  projectName = faker.color.human(),
+  count = 1
+): Issue[] {
+  return Array.from({ length: count }, () => fakeWork(projectName, 'issue'));
 }
