@@ -29,6 +29,7 @@ const update = () => {
 
   computePosition(context.reference.value, floatingEl.value, {
     placement: props.placement,
+    strategy: 'fixed',
     middleware: [
       offset(10),
       arrow({ element: arrowEl.value! })
