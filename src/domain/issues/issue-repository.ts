@@ -10,31 +10,24 @@ export class IssueRepository implements IIssueRepository {
     this.gitlab = gitlab;
   }
 
-  /**
-   * Retrieve issues created by the current user as a IssueCollection.
-   */
   async issuesCreatedByMe(): Promise<IssueCollection> {
-    const created = await this.gitlab.issues({
-      scope: 'created_by_me', per_page: 100, order_by: 'updated_at', sort: 'desc'
-    });
-    const items = (created || []).map(i => new Issue(i));
+    const created = await Promise.all([
+      this.gitlab.issues({ scope: 'created_by_me', state: 'opened', per_page: 100, order_by: 'created_at', sort: 'desc' }),
+      this.gitlab.issues({ scope: 'created_by_me', state: 'closed', per_page: 100, order_by: 'updated_at', sort: 'desc' }),
+    ]);
+    const items = created.flatMap((i) => i).map(i => new Issue(i));
     return new IssueCollection(items);
   }
 
-  /**
-   * Retrieve issues assigned to the current user as a IssueCollection.
-   */
   async issuesAssignedToMe(): Promise<IssueCollection> {
-    const assigned = await this.gitlab.issues({
-      scope: 'assigned_to_me', per_page: 100, order_by: 'updated_at', sort: 'desc'
-    });
-    const items = (assigned || []).map(i => new Issue(i));
+    const assigned = await Promise.all([
+      this.gitlab.issues({ scope: 'assigned_to_me', state: 'opened', per_page: 100, order_by: 'created_at', sort: 'desc' }),
+      this.gitlab.issues({ scope: 'assigned_to_me', state: 'closed', per_page: 100, order_by: 'updated_at', sort: 'desc' }),
+    ]);
+    const items = assigned.flatMap((i) => i).map(i => new Issue(i));
     return new IssueCollection(items);
   }
 
-  /**
-   * Retrieve issues that current user reaction was pencil.
-   */
   async issuesReactedByPencil(): Promise<IssueCollection> {
     const reacted = await this.gitlab.issues({
       my_reaction_emoji: 'pencil', per_page: 100, order_by: 'updated_at', sort: 'desc'
@@ -43,9 +36,6 @@ export class IssueRepository implements IIssueRepository {
     return new IssueCollection(items);
   }
 
-  /**
-   * Retrieve id of issues that current user reaction was was white_check_mark.
-   */
   async issuesReactedByWhiteCheckMark(): Promise<Set<number>> {
     const reacted = await this.gitlab.issues({
       my_reaction_emoji: 'white_check_mark', per_page: 100, order_by: 'updated_at', sort: 'desc'
