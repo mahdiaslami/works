@@ -23,7 +23,6 @@ const arrowStyle = ref<{
 }>({})
 
 let cleanup: (() => void) | undefined;
-const timeoutId: ReturnType<typeof setTimeout> | null = null;
 
 const update = () => {
   if (!context.reference.value || !floatingEl.value) return;
@@ -65,7 +64,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   cleanup?.()
-  if (timeoutId) clearTimeout(timeoutId);
 })
 
 </script>
